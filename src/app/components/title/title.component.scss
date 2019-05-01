@@ -1,48 +1,63 @@
-@import url("https://fonts.googleapis.com/css?family=Lobster|Pacifico");
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+@import "../../../assets/css/variables.scss";
 
+.row.fz-100 {
+	padding-bottom: 50px;
+	&.h1 {
+		font-size: 100px;
+	}
+}
 
+.row {
+	padding-bottom: 100px;
+}
+
+h1.fz-200 {
+    font-size: 200px;
+}
+
+h1.fz-100 {
+    font-size: 100px;
+}
 
 h1 {
     font-weight: normal;
-    font-size: 200px;
     line-height: 0.75;
     font-family: 'Lobster', 'Pacifico', "Avant Garde", sans-serif;
-    // font-family: 'Pacifico', 'Lobster', "Avant Garde", sans-serif;
-    color: #fff;
+    color: $WHITE;
     text-align: center;
     margin: 0 auto;
-    padding-top: 2%;
     // letter-spacing: 6px; 
-	text-shadow:	 1px  1px 1px #8A897C,
-					 2px  2px 1px #8A897C,
-					 3px  3px 1px #8A897C,
-					 4px  4px 1px #8A897C,
-					 5px  5px 1px #8A897C,
-					 6px  6px 1px #8A897C,
-					 7px  7px 1px #8A897C,
-					 8px  8px 1px #8A897C,
-					 9px  9px 1px #8A897C,
-					10px 10px 1px #8A897C,
-					11px 11px 1px #8A897C,
-					12px 12px 1px #8A897C,
-					13px 13px 1px #8A897C,
-					14px 14px 1px #8A897C,
-					15px 15px 1px #8A897C,
-					16px 16px 1px #8A897C,
-					17px 17px 1px #8A897C,
-					18px 18px 1px #8A897C,
-					19px 19px 1px #8A897C,
-					20px 20px 1px #8A897C,
-					21px 21px 1px #8A897C,
-					22px 22px 1px #8A897C,
-					23px 23px 1px #8A897C,
-					24px 24px 1px #8A897C,
-					25px 25px 1px #8A897C,
-					26px 26px 1px #8A897C,
-					27px 27px 1px #8A897C,
-					28px 28px 1px #8A897C,
-					29px 29px 1px #8A897C,
-					30px 30px 1px #8A897C;
+	text-shadow:	 1px  1px 1px $ROCKETMETALLIC,
+					 2px  2px 1px $ROCKETMETALLIC,
+					 3px  3px 1px $ROCKETMETALLIC,
+					 4px  4px 1px $ROCKETMETALLIC,
+					 5px  5px 1px $ROCKETMETALLIC,
+					 6px  6px 1px $ROCKETMETALLIC,
+					 7px  7px 1px $ROCKETMETALLIC,
+					 8px  8px 1px $ROCKETMETALLIC,
+					 9px  9px 1px $ROCKETMETALLIC,
+					10px 10px 1px $ROCKETMETALLIC,
+					11px 11px 1px $ROCKETMETALLIC,
+					12px 12px 1px $ROCKETMETALLIC,
+					13px 13px 1px $ROCKETMETALLIC,
+					14px 14px 1px $ROCKETMETALLIC,
+					15px 15px 1px $ROCKETMETALLIC,
+					16px 16px 1px $ROCKETMETALLIC,
+					17px 17px 1px $ROCKETMETALLIC,
+					18px 18px 1px $ROCKETMETALLIC,
+					19px 19px 1px $ROCKETMETALLIC,
+					20px 20px 1px $ROCKETMETALLIC,
+					21px 21px 1px $ROCKETMETALLIC,
+					22px 22px 1px $ROCKETMETALLIC,
+					23px 23px 1px $ROCKETMETALLIC,
+					24px 24px 1px $ROCKETMETALLIC,
+					25px 25px 1px $ROCKETMETALLIC,
+					26px 26px 1px $ROCKETMETALLIC,
+					27px 27px 1px $ROCKETMETALLIC,
+					28px 28px 1px $ROCKETMETALLIC,
+					29px 29px 1px $ROCKETMETALLIC,
+					30px 30px 1px $ROCKETMETALLIC;
   
     -webkit-transform: skewY(-15deg);
     -moz-transform: skewY(-15deg);
@@ -51,6 +66,7 @@ h1 {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 
-    animation-duration: 1s;
-    animation-delay: 1s;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
 }
+

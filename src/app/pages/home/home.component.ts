@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  enter = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  pressButton() {
+    this.enter = true;
+
+    setTimeout(() => {
+      this.enter = false;
+    }, 100);
+
   }
 
 }

@@ -1,1 +1,30 @@
-<app-title></app-title>
+<div class="main-wrapper container-fluid">
+
+  <app-title></app-title>
+
+  <section class="row home-forms">
+    <div class="container">
+
+      <div class="row room-id d-flex justify-content-center">
+        <div class="col-md-6">
+          <input (keyup.enter)="pressButton()" type="number" placeholder="ROOM ID...">
+        </div>
+        <div class="col-md-1">
+          <button [ngClass]="{'pressed': enter}" type="button" class="button btn-continue">
+              <i class="fas fa-hand-point-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="row new-room d-flex justify-content-center">
+          <div class="col-md-4">
+            <button type="button" class="button btn-new-room">
+                NEW ROOM
+            </button>
+          </div>
+        </div>
+    </div>
+
+  </section>
+
+</div>

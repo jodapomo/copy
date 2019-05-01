@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("./assets/css/animate.css");
+@import "./assets/css/animate.css";
+@import "./assets/css/variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Gugi");
+
+html, body {
+    height: 100%;
+    font-family: "Gugi", sans-serif;
+    color: $JET;
+}
 
 body {
-    background-color: #D2D7DF;
+    background-color: $LIGHTGRAY;
 }

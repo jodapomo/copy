@@ -1,0 +1,128 @@
+@import "../../../assets/css/variables.scss";
+
+
+.main-wrapper {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.row.room-id {
+    margin-bottom: 40px;
+}
+
+input {
+    position: relative;
+    border: none;
+    padding: 5px 20px;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    color: $ROCKETMETALLIC;
+
+    &::placeholder {
+        color: lighten($ROCKETMETALLIC, 20%);
+    }
+
+    &:focus {
+        // border: 2px solid $ROCKETMETALLIC;
+        outline: none;
+        top: 2px;
+        left: 2px;
+        box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                    2px  2px 1px $ROCKETMETALLIC,
+                    3px  3px 1px $ROCKETMETALLIC,
+                    4px  4px 1px $ROCKETMETALLIC,
+                    5px  5px 1px $ROCKETMETALLIC,
+                    6px  6px 1px $ROCKETMETALLIC,
+                    7px  7px 1px $ROCKETMETALLIC,
+                    8px  8px 1px $ROCKETMETALLIC;
+
+        &::placeholder {
+            color: lighten($ROCKETMETALLIC, 10%);;
+        }
+    }
+}
+
+.button {
+    height: 74px;
+    position: relative;
+    background: $BLACKSHADOW;
+    color: $WHITE;
+    border: none;
+    outline: none;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    transition: background .2s ease-in-out;
+
+    &:hover {
+        background: darken($BLACKSHADOW, 8%);
+    }
+
+    &:active {
+        border: none;
+        outline: none;
+        top: 2px;
+        left: 2px;
+        box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                    2px  2px 1px $ROCKETMETALLIC,
+                    3px  3px 1px $ROCKETMETALLIC,
+                    4px  4px 1px $ROCKETMETALLIC,
+                    5px  5px 1px $ROCKETMETALLIC,
+                    6px  6px 1px $ROCKETMETALLIC,
+                    7px  7px 1px $ROCKETMETALLIC,
+                    8px  8px 1px $ROCKETMETALLIC;
+    }
+}
+
+.button.btn-continue {
+    width: 74px;
+}
+
+.button.btn-new-room {
+    width: 100%;
+}
+
+.button.pressed {
+    border: none;
+    outline: none;
+    top: 2px;
+    left: 2px;
+    box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                2px  2px 1px $ROCKETMETALLIC,
+                3px  3px 1px $ROCKETMETALLIC,
+                4px  4px 1px $ROCKETMETALLIC,
+                5px  5px 1px $ROCKETMETALLIC,
+                6px  6px 1px $ROCKETMETALLIC,
+                7px  7px 1px $ROCKETMETALLIC,
+                8px  8px 1px $ROCKETMETALLIC;
+}
+
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input, .button {
+    border-radius: 5px;
+    font-size: 45px;
+    box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                2px  2px 1px $ROCKETMETALLIC,
+                3px  3px 1px $ROCKETMETALLIC,
+                4px  4px 1px $ROCKETMETALLIC,
+                5px  5px 1px $ROCKETMETALLIC,
+                6px  6px 1px $ROCKETMETALLIC,
+                7px  7px 1px $ROCKETMETALLIC,
+                8px  8px 1px $ROCKETMETALLIC,
+                9px  9px 1px $ROCKETMETALLIC,
+                10px 10px 1px $ROCKETMETALLIC;
+}

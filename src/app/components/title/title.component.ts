@@ -7,12 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TitleComponent implements OnInit {
 
-  @Input() fontSize: any = 200;
+  @Input() fz100 = false;
 
   constructor() {}
 
-  ngOnInit() {
-    this.fontSize = (this.fontSize).toString() + 'px';
-  }
+  ngOnInit() {}
 
 }
