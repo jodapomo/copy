@@ -5,7 +5,6 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     loadChildren: './pages/home/home.module#HomeModule',
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }

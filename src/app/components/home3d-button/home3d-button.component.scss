@@ -1,0 +1,47 @@
+@import "../../../assets/css/variables.scss";
+
+.button {
+    height: 74px;
+    position: relative;
+    background: $BLACKSHADOW;
+    color: $WHITE;
+    border: none;
+    outline: none;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 0px 20px;
+    transition: background .2s ease-in-out;
+    border-radius: 5px;
+    font-size: 45px;
+    box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                2px  2px 1px $ROCKETMETALLIC,
+                3px  3px 1px $ROCKETMETALLIC,
+                4px  4px 1px $ROCKETMETALLIC,
+                5px  5px 1px $ROCKETMETALLIC,
+                6px  6px 1px $ROCKETMETALLIC,
+                7px  7px 1px $ROCKETMETALLIC,
+                8px  8px 1px $ROCKETMETALLIC,
+                9px  9px 1px $ROCKETMETALLIC,
+                10px 10px 1px $ROCKETMETALLIC;
+
+    &:hover {
+        background: darken($BLACKSHADOW, 8%);
+    }
+
+    &:active {
+        background: darken($BLACKSHADOW, 8%);
+        border: none;
+        outline: none;
+        top: 2px;
+        left: 2px;
+        box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                    2px  2px 1px $ROCKETMETALLIC,
+                    3px  3px 1px $ROCKETMETALLIC,
+                    4px  4px 1px $ROCKETMETALLIC,
+                    5px  5px 1px $ROCKETMETALLIC,
+                    6px  6px 1px $ROCKETMETALLIC,
+                    7px  7px 1px $ROCKETMETALLIC,
+                    8px  8px 1px $ROCKETMETALLIC;
+    }
+}

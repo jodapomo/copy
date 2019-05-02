@@ -12,3 +12,13 @@ html, body {
 body {
     background-color: $LIGHTGRAY;
 }
+
+@keyframes spin {
+    0% {
+        transform: translateY(-50%) rotate(0);
+
+    }
+    100% {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
