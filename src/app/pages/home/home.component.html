@@ -1,12 +1,16 @@
-<div class="main-wrapper container-fluid">
+<div class="main-wrapper container-fluid animated fadeIn">
 
   <app-title></app-title>
 
   <section class="row home-forms">
     <div class="container">
 
-      <router-outlet></router-outlet>
+      <div [@routeAnimations]="prepareRoute(outlet)" class="router">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
       
     </div>
 
   </section>
+
+</div>

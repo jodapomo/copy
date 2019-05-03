@@ -5,5 +5,10 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
+    overflow: hidden;
+
+    .router {
+        height: 30vh;
+    }
 }
 

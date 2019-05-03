@@ -5,12 +5,14 @@ import { TitleComponent } from './title/title.component';
 import { HomeInputButtonComponent } from './home-input-button/home-input-button.component';
 import { Home3dButtonComponent } from './home3d-button/home3d-button.component';
 import { RouterModule } from '@angular/router';
+import { DigitOnlyRoomIdDirective } from '../directives/digit-only-room-id.directive';
 
 @NgModule({
   declarations: [
     TitleComponent,
     HomeInputButtonComponent,
     Home3dButtonComponent,
+    DigitOnlyRoomIdDirective
   ],
   exports: [
     TitleComponent,

@@ -1,10 +1,39 @@
 <div class="row input-button-wrapper d-flex justify-content-center">
 
+  <div *ngIf="backButton" class="col-md-2 button-wrapper">
+
+    <button (click)="back()" [ngClass]="{ 'clickable': true }" type="button" class="button btn-continue">
+      <i class="fas fa-hand-point-left control-icon"></i>
+    </button>
+
+  </div>
+
   <div class="col-md-6 input-wrapper">
 
-      <input [(ngModel)]="value" (keyup)="send()" (keyup.enter)="pressButton()" autofocus [type]="type" min="1" [placeholder]="placeholder">
+      <input
+      #input
+      *ngIf="type === 'room_id'"
+      [(ngModel)]="value"
+      (keydown.enter)="pressButton()"
+      (keyup.enter)="releaseButtonAndSend()"
+      type="text" 
+      pattern="[0-9]*"
+      inputmode="numeric"
+      [placeholder]="placeholder"
+      autofocus
+      appRoomIdOnly >
 
-      <span *ngIf="value.length > 0 && !loading" (click)="value = ''" class="icon-wrapper">
+      <input
+      #input
+      *ngIf="type === 'text'"
+      [(ngModel)]="value"
+      (keydown.enter)="pressButton()"
+      (keyup.enter)="releaseButtonAndSend()"
+      type="text" 
+      [placeholder]="placeholder"
+      autofocus >
+
+      <span *ngIf="value.length > 0 && !loading" (click)="clear()" class="icon-wrapper">
         <i class="fas fa-times-circle input-button erase"></i>
       </span>
 
@@ -14,10 +43,10 @@
 
   </div>
   
-  <div class="col-md-1">
+  <div class="col-md-2 button-wrapper">
 
-    <button (click)="send()" [ngClass]="{'pressed': enter}" type="button" class="button btn-continue">
-      <i class="fas fa-hand-point-right"></i>
+    <button (click)="send()" [ngClass]="{'pressed': enter, 'clickable': value.length > 0 }" type="button" class="button btn-continue">
+      <i class="fas fa-hand-point-right control-icon"></i>
     </button>
 
   </div>

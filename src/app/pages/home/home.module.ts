@@ -17,7 +17,7 @@ import { UserNameComponent } from './user-name/user-name.component';
   imports: [
     CommonModule,
     ComponentsModule,
-    HomeRoutingModule
+    HomeRoutingModule,
   ]
 })
 export class HomeModule { }

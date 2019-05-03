@@ -9,9 +9,9 @@ const routes: Routes = [
   { path: '',
     component: HomeComponent,
     children: [
-      { path: '', pathMatch: 'full', component: RoomIdComponent },
-      { path: 'new-room/name', pathMatch: 'full', component: RoomNameComponent },
-      { path: 'new-room/user-name', pathMatch: 'full', component: UserNameComponent },
+      { path: '', pathMatch: 'full', component: RoomIdComponent, data: { order: 1 } },
+      { path: 'new-room/name', pathMatch: 'full', component: RoomNameComponent, data: { order: 2 } },
+      { path: 'new-room/username', pathMatch: 'full', component: UserNameComponent, data: { order: 3 } },
     ],
   },
 

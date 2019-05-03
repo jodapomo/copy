@@ -26,8 +26,9 @@ h1 {
     font-family: 'Lobster', 'Pacifico', "Avant Garde", sans-serif;
     color: $WHITE;
     text-align: center;
-    margin: 0 auto;
-    // letter-spacing: 6px; 
+	margin: 0 auto;
+	outline: none;
+	cursor: pointer;
 	text-shadow:	 1px  1px 1px $ROCKETMETALLIC,
 					 2px  2px 1px $ROCKETMETALLIC,
 					 3px  3px 1px $ROCKETMETALLIC,

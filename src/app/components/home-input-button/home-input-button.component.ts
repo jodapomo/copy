@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-input-button',
@@ -10,18 +12,25 @@ export class HomeInputButtonComponent implements OnInit {
   @Input() placeholder: string;
   @Input() type: string;
   @Input() loading: boolean;
+  @Input() backButton: boolean;
+  
+
+  @ViewChild('input') inputElement: ElementRef;
 
   value: string;
 
-  erase: boolean;
   enter: boolean;
 
-  constructor() {
-    this.loading = false;
-    this.erase = false;
-    this.enter = false;
+  constructor( 
+    private location: Location,
+    public router: Router,
+  ) {
 
-    this.type = '';
+    this.loading = false;
+    this.enter = false;
+    this.backButton = false;
+
+    this.type = 'text';
 
     this.value = '';
 
@@ -31,17 +40,40 @@ export class HomeInputButtonComponent implements OnInit {
   }
 
   pressButton() {
-    this.enter = true;
+    if ( this.value.length > 0 ) {
+      this.enter = true;
+    }
+  }
 
-    setTimeout(() => {
+  releaseButtonAndSend() {
+    if ( this.value.length > 0 ) {
       this.enter = false;
-    }, 100);
+      this.send();
+    }
+  }
 
+  clear() {
+    this.value = '';
+    this.inputElement.nativeElement.focus();
   }
 
   send() {
-    console.log( this.value.length > 0 );
-    console.log(this.value);
+
+    if ( this.value.length > 0 ) {
+      console.log( this.value.length > 0 );
+      console.log(this.value);
+    }
+
+  }
+
+  back() {
+    console.log(window.history);
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      this.router.navigate(['/']);
+    }
+
   }
 
 }
