@@ -6,13 +6,15 @@ import { HomeInputButtonComponent } from './home-input-button/home-input-button.
 import { Home3dButtonComponent } from './home3d-button/home3d-button.component';
 import { RouterModule } from '@angular/router';
 import { DigitOnlyRoomIdDirective } from '../directives/digit-only-room-id.directive';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
   declarations: [
     TitleComponent,
     HomeInputButtonComponent,
     Home3dButtonComponent,
-    DigitOnlyRoomIdDirective
+    DigitOnlyRoomIdDirective,
+    TooltipComponent
   ],
   exports: [
     TitleComponent,

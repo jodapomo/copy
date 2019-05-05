@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomNameComponent implements OnInit {
 
-  constructor() { }
+  loading: boolean;
+  error: boolean;
+  errorMessage: string;
+
+  constructor() {
+
+    this.loading = false;
+    this.error = false;
+
+    this.errorMessage = 'An error occurred with the name selection.'
+
+  }
 
   ngOnInit() {
   }

@@ -13,6 +13,9 @@ export class HomeInputButtonComponent implements OnInit {
   @Input() type: string;
   @Input() loading: boolean;
   @Input() backButton: boolean;
+  @Input() tooltipMessage: string;
+  @Input() error: boolean;
+  @Input() errorMessage: string;
   
 
   @ViewChild('input') inputElement: ElementRef;
@@ -29,8 +32,11 @@ export class HomeInputButtonComponent implements OnInit {
     this.loading = false;
     this.enter = false;
     this.backButton = false;
+    this.error = false;
 
     this.type = 'text';
+    this.tooltipMessage = '';
+    this.errorMessage = '';
 
     this.value = '';
 
@@ -67,7 +73,7 @@ export class HomeInputButtonComponent implements OnInit {
   }
 
   back() {
-    console.log(window.history);
+    
     if (window.history.length > 1) {
       this.location.back();
     } else {

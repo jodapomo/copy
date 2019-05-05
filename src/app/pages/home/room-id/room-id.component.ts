@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomIdComponent implements OnInit {
 
-  constructor() { }
+  loading: boolean;
+  error: boolean;
+
+  constructor() {
+
+    this.loading = false;
+    this.error = false;
+
+  }
 
   ngOnInit() {
   }

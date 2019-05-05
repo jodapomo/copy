@@ -1,6 +1,6 @@
 @import "../../../assets/css/variables.scss";
 
-.row.input-button-wrapper {
+.input-button-wrapper {
     margin-bottom: 40px;
 }
 
@@ -22,7 +22,7 @@
     align-content: center;
     justify-content: center;
     transition: background .2s ease-in-out;
-    cursor: not-allowed;
+    cursor: default;
 
     &.clickable {
 
@@ -132,18 +132,6 @@
     }
 }
 
-/* For Firefox */
-input[type='number'] {
-    -moz-appearance:textfield;
-}
-
-/* Webkit browsers like Safari and Chrome */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
 input, .button {
     border-radius: 5px;
     font-size: 45px;
@@ -158,3 +146,38 @@ input, .button {
                 9px  9px 1px $ROCKETMETALLIC,
                 10px 10px 1px $ROCKETMETALLIC;
 }
+
+.alert-wrapper {
+    max-height: 0;
+    transition: all 1s ease-in-out;
+    overflow: hidden;
+
+    &.open {
+        transition: all 1s ease-in-out;
+        max-height: 150px;
+    }
+
+    .alert {
+        background: $BLACKSHADOW;
+        color: rgb(131, 30, 42);
+        text-align: center;
+        margin-bottom: 0;
+        margin-top: 20px;
+        border-radius: 5px;
+        
+    }
+    
+}
+
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+

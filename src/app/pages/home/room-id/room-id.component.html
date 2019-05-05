@@ -2,6 +2,10 @@
 <app-home-input-button
     placeholder="ROOM ID..."
     type="room_id"
+    tooltipMessage="Enter a room id first"
+    [loading]="loading"
+    [error]="error"
+    errorMessage="The id entered is not valid or does not exist!"
 ></app-home-input-button>
 
 <app-home3d-button 
