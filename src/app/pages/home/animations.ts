@@ -20,15 +20,15 @@ const nextAnimation = [
     })
   ]),
   query(':enter',  [
-    style({ left: '100%'})
+    style({ left: '100vw'})
   ], { optional: true }),
   query(':leave', animateChild(), { optional: true }),
   group([
     query(':leave', [
-      animate('300ms ease-out', style({ left: '-100%'}))
+      animate('600ms ease-in-out', style({ left: '-100vw'}))
     ], { optional: true }),
     query(':enter', [
-      animate('300ms ease-out', style({ left: '0%'}))
+      animate('600ms ease-in-out', style({ left: '0vw'}))
     ], { optional: true })
   ]),
   query(':enter', animateChild(), { optional: true }),
@@ -45,15 +45,15 @@ const backAnimation = [
     })
   ]),
   query(':enter', [
-    style({ left: '-100%'})
+    style({ left: '-100vw'})
   ], { optional: true }),
   query(':leave', animateChild(), { optional: true }),
   group([
     query(':leave', [
-      animate('300ms ease-out', style({ left: '100%'}))
+      animate('600ms ease-in-out', style({ left: '100vw'}))
     ], { optional: true }),
     query(':enter', [
-      animate('300ms ease-out', style({ left: '0%'}))
+      animate('600ms ease-in-out', style({ left: '0vw'}))
     ], { optional: true })
   ]),
   query(':enter', animateChild(), { optional: true }),
@@ -62,9 +62,9 @@ const backAnimation = [
 export const slideHomeRouterAnimation =
   trigger('routeAnimations', [
 
-    transition('1 => *, 2 => 3', nextAnimation),
+    transition(':increment', nextAnimation),
 
-    transition('* => 1, 3 => 2', backAnimation),
+    transition(':decrement', backAnimation),
 
   ]);
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideHomeRouterAnimation } from './animations';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,13 +13,22 @@ import { slideHomeRouterAnimation } from './animations';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  currentRouteOrder: number;
+
+  constructor(
+  ) {}
 
   ngOnInit() {
   }
+  
+  getRouteAnimation(outlet: RouterOutlet) {
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['order'];
-  }
+    if ( outlet.activatedRouteData.order === undefined ) {
+      return -1;
+    } else {
+      return outlet.activatedRouteData.order
+    }
+
+  }  
 
 }

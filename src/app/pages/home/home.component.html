@@ -5,7 +5,7 @@
   <section class="row home-forms">
     <div class="container">
 
-      <div [@routeAnimations]="prepareRoute(outlet)" class="router">
+      <div [@routeAnimations]="getRouteAnimation(outlet)" class="router">
         <router-outlet #outlet="outlet"></router-outlet>
       </div>
       
