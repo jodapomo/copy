@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomService } from '../../../services/room.service';
 
 @Component({
   selector: 'app-room-id',
@@ -10,7 +11,9 @@ export class RoomIdComponent implements OnInit {
   loading: boolean;
   error: boolean;
 
-  constructor() {
+  constructor(
+    private roomService: RoomService,
+  ) {
 
     this.loading = false;
     this.error = false;
@@ -18,6 +21,18 @@ export class RoomIdComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.loading = true;
+    this.roomService.getRoomById(2)
+      .subscribe( rooms => {
+        console.log(rooms);
+        this.loading = false;
+      }, err => {
+        console.log(err);
+        this.error = true;
+        this.loading = false;
+      });
+
   }
 
 }
