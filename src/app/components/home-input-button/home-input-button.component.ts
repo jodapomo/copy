@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,9 @@ export class HomeInputButtonComponent implements OnInit {
   @Input() tooltipMessage: string;
   @Input() error: boolean;
   @Input() errorMessage: string;
+
+  @Output() typing: EventEmitter<number | string> = new EventEmitter<number | string>();
+  @Output() send: EventEmitter<number | string> = new EventEmitter<number | string>();
   
 
   @ViewChild('input') inputElement: ElementRef;
@@ -54,22 +57,30 @@ export class HomeInputButtonComponent implements OnInit {
   releaseButtonAndSend() {
     if ( this.value.length > 0 ) {
       this.enter = false;
-      this.send();
+      this.onSend();
     }
   }
+
 
   clear() {
     this.value = '';
     this.inputElement.nativeElement.focus();
   }
 
-  send() {
+  onSend() {
 
     if ( this.value.length > 0 ) {
-      console.log( this.value.length > 0 );
-      console.log(this.value);
+      this.send.emit( this.value )
     }
 
+  }
+
+  onTyping() {
+
+    if ( this.value.length > 0 ) {
+      this.typing.emit( this.value )
+    }
+    
   }
 
   back() {

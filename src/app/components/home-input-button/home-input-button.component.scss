@@ -151,6 +151,7 @@ input, .button {
     max-height: 0;
     transition: all 1s ease-in-out;
     overflow: hidden;
+    padding-bottom: 5px;
 
     &.open {
         transition: all 1s ease-in-out;
@@ -164,7 +165,11 @@ input, .button {
         margin-bottom: 0;
         margin-top: 20px;
         border-radius: 5px;
-        
+        box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                    2px  2px 1px $ROCKETMETALLIC,
+                    3px  3px 1px $ROCKETMETALLIC,
+                    4px  4px 1px $ROCKETMETALLIC,
+                    5px  5px 1px $ROCKETMETALLIC;
     }
     
 }

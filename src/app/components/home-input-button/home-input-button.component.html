@@ -15,12 +15,14 @@
         #input
         *ngIf="type === 'room_id'"
         [(ngModel)]="value"
+        (keyup)="onTyping()"
         (keydown.enter)="pressButton()"
         (keyup.enter)="releaseButtonAndSend()"
         type="text" 
         pattern="[0-9]*"
         inputmode="numeric"
         [placeholder]="placeholder"
+        [disabled]="loading"
         autofocus
         appRoomIdOnly >
   
@@ -28,10 +30,12 @@
         #input
         *ngIf="type === 'text'"
         [(ngModel)]="value"
+        (keyup)="onTyping()"
         (keydown.enter)="pressButton()"
         (keyup.enter)="releaseButtonAndSend()"
         type="text" 
         [placeholder]="placeholder"
+        [disabled]="loading"
         autofocus >
   
         <span *ngIf="value.length > 0 && !loading" (click)="clear()" class="icon-wrapper">
@@ -48,7 +52,7 @@
   
       <app-tooltip [tooltip-text]="tooltipMessage" tooltip-direction="top" tooltip-effect="zoom" [tooltip-display]="!( value.length > 0 )">
   
-        <button (click)="send()" [ngClass]="{'pressed': enter, 'clickable': value.length > 0 }" type="button" class="button btn-continue">
+        <button (click)="onSend()" [ngClass]="{'pressed': enter, 'clickable': value.length > 0 }" type="button" class="button btn-continue">
           <i class="fas fa-hand-point-right control-icon"></i>
         </button>
   

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Room } from '../models/room';
-import { ErrorService } from './error.service';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -14,7 +13,6 @@ export class RoomService {
 
   constructor( 
     private http: HttpClient,
-    private errorService: ErrorService
   ) {
 
     this.apiUrl = environment.apiUrl;
@@ -25,8 +23,7 @@ export class RoomService {
 
     const url = `${ this.apiUrl }/rooms`
 
-    return this.http.get( url )
-      .pipe( catchError( this.errorService.handleError ) );
+    return this.http.get( url );
 
   }
 
@@ -34,8 +31,7 @@ export class RoomService {
 
     const url = `${ this.apiUrl }/rooms/${ id }`
 
-    return this.http.get( url )
-      .pipe( catchError( this.errorService.handleError ) );
+    return this.http.get( url );
 
   }
 

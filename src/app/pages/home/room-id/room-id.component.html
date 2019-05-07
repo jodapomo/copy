@@ -5,7 +5,9 @@
     tooltipMessage="Enter a room id first"
     [loading]="loading"
     [error]="error"
-    errorMessage="The id entered is not valid or does not exist!"
+    [errorMessage]="errorMessage"
+    (typing)="onTyping( $event )"
+    (send)="onSend( $event )"
 ></app-home-input-button>
 
 <app-home3d-button 

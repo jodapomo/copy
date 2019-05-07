@@ -11,6 +11,8 @@ export class RoomIdComponent implements OnInit {
   loading: boolean;
   error: boolean;
 
+  errorMessage: string;
+
   constructor(
     private roomService: RoomService,
   ) {
@@ -18,21 +20,40 @@ export class RoomIdComponent implements OnInit {
     this.loading = false;
     this.error = false;
 
+    this.errorMessage = 'The id entered is not valid or does not exist!';
+
   }
 
   ngOnInit() {
 
+    
+
+  }
+
+  onSend( roomId: number ) {
+
     this.loading = true;
-    this.roomService.getRoomById(2)
-      .subscribe( rooms => {
-        console.log(rooms);
+
+    this.roomService.getRoomById( roomId )
+      .subscribe( room => {
+
+        console.log(room);
+        this.error = false;
         this.loading = false;
+
       }, err => {
-        console.log(err);
+
         this.error = true;
+        this.errorMessage = err;
         this.loading = false;
+
       });
 
+  }
+
+  onTyping( roomId: number ) {
+    this.error = false;
+    return;
   }
 
 }
