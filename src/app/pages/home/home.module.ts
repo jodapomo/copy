@@ -6,6 +6,7 @@ import { ComponentsModule } from '../../components/components.module';
 import { RoomIdComponent } from './room-id/room-id.component';
 import { RoomNameComponent } from './room-name/room-name.component';
 import { UserNameComponent } from './user-name/user-name.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UserNameComponent } from './user-name/user-name.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ComponentsModule,
     HomeRoutingModule,
   ]

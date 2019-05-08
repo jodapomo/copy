@@ -1,42 +1,55 @@
 <div class="input-button-wrapper">
-  <div class="row d-flex justify-content-center">
-  
-    <div *ngIf="backButton" class="col-md-2 button-wrapper">
-  
-      <button (click)="back()" [ngClass]="{ 'clickable': true }" type="button" class="button btn-continue">
-        <i class="fas fa-hand-point-left control-icon"></i>
-      </button>
-  
-    </div>
-  
-    <div class="col-md-6 input-wrapper">
-  
-        <input
-        #input
-        *ngIf="type === 'room_id'"
-        [(ngModel)]="value"
-        (keyup)="onTyping()"
-        (keydown.enter)="pressButton()"
-        (keyup.enter)="releaseButtonAndSend()"
-        type="text" 
-        pattern="[0-9]*"
-        inputmode="numeric"
-        [placeholder]="placeholder"
-        [disabled]="loading"
-        autofocus
-        appRoomIdOnly >
+
+  <form #form="ngForm" autocomplete="off">
+
+    <div class="row d-flex justify-content-center">
+    
+      <div *ngIf="backButton" class="col-md-2 button-wrapper">
+    
+        <button (click)="back()" [ngClass]="{ 'clickable': true }" type="button" class="button btn-continue">
+          <i class="fas fa-hand-point-left control-icon"></i>
+        </button>
+    
+      </div>
+
+      
+      
+      <div class="col-md-6 input-wrapper">
+
   
         <input
-        #input
-        *ngIf="type === 'text'"
-        [(ngModel)]="value"
-        (keyup)="onTyping()"
-        (keydown.enter)="pressButton()"
-        (keyup.enter)="releaseButtonAndSend()"
-        type="text" 
-        [placeholder]="placeholder"
-        [disabled]="loading"
-        autofocus >
+          #input
+          
+          *ngIf="type === 'room_id'"
+          [(ngModel)]="value"
+          name="value"
+          (keyup)="onTyping()"
+          (keydown.enter)="pressButton()"
+          (keyup.enter)="releaseButtonAndSend()"
+          type="text" 
+          pattern="[0-9]*"
+          inputmode="numeric"
+          [placeholder]="placeholder"
+          [disabled]="loading"
+          autofocus
+          appRoomIdOnly
+        >
+
+        <input
+          #input
+          
+          *ngIf="type === 'text'"
+          [(ngModel)]="value"
+          name="value"
+          (keyup)="onTyping()"
+          (keydown.enter)="pressButton()"
+          (keyup.enter)="releaseButtonAndSend()"
+          type="text"
+          pattern="[A-Za-z0-9 ]+"
+          [placeholder]="placeholder"
+          [disabled]="loading"
+          autofocus
+        >
   
         <span *ngIf="value.length > 0 && !loading" (click)="clear()" class="icon-wrapper">
           <i class="fas fa-times-circle input-button erase"></i>
@@ -45,22 +58,24 @@
         <span *ngIf="loading" class="icon-wrapper">
           <i class="fas fa-sync-alt input-button spin"></i> 
         </span>
-  
+        
+      </div>
+      
+      <div class="col-md-2 button-wrapper">
+        
+        <app-tooltip [tooltip-text]="tooltipMessage" tooltip-direction="top" tooltip-effect="zoom" [tooltip-display]="!( value.length > 0 )">
+          
+          <button (click)="onSend()" [ngClass]="{'pressed': enter, 'clickable': ( value.length > 0 && form.valid ) }" type="button" class="button btn-continue">
+            <i class="fas fa-hand-point-right control-icon"></i>
+          </button>
+          
+        </app-tooltip>
+        
+      </div>
+
     </div>
-    
-    <div class="col-md-2 button-wrapper">
-  
-      <app-tooltip [tooltip-text]="tooltipMessage" tooltip-direction="top" tooltip-effect="zoom" [tooltip-display]="!( value.length > 0 )">
-  
-        <button (click)="onSend()" [ngClass]="{'pressed': enter, 'clickable': value.length > 0 }" type="button" class="button btn-continue">
-          <i class="fas fa-hand-point-right control-icon"></i>
-        </button>
-  
-      </app-tooltip>
-  
-    </div>
-    
-  </div>
+
+  </form>
   
   <div [ngClass]="{'open': error}" class="row alert-wrapper d-flex justify-content-center" role="alert">
     <div class="alert">

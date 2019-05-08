@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home-input-button',
   templateUrl: './home-input-button.component.html',
   styleUrls: ['./home-input-button.component.scss']
 })
-export class HomeInputButtonComponent implements OnInit {
+export class HomeInputButtonComponent implements OnInit, AfterViewInit {
 
   @Input() placeholder: string;
   @Input() type: string;
@@ -20,8 +21,13 @@ export class HomeInputButtonComponent implements OnInit {
   @Output() typing: EventEmitter<number | string> = new EventEmitter<number | string>();
   @Output() send: EventEmitter<number | string> = new EventEmitter<number | string>();
   
+  @Output() formatError: EventEmitter<boolean> = new EventEmitter<boolean>();
+  
 
   @ViewChild('input') inputElement: ElementRef;
+  @ViewChild('form') ngForm: NgForm;
+
+  formChangesSubscription: any; 
 
   value: string;
 
@@ -48,6 +54,11 @@ export class HomeInputButtonComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    this.inputElement.nativeElement.focus();
+  }
+
+
   pressButton() {
     if ( this.value.length > 0 ) {
       this.enter = true;
@@ -69,16 +80,30 @@ export class HomeInputButtonComponent implements OnInit {
 
   onSend() {
 
-    if ( this.value.length > 0 ) {
-      this.send.emit( this.value )
+    if ( this.value.length > 0 && this.ngForm.valid ) {
+
+      this.send.emit( this.value );
+      
     }
 
   }
 
   onTyping() {
-
+    
     if ( this.value.length > 0 ) {
-      this.typing.emit( this.value )
+
+      this.typing.emit( this.value );
+
+    }
+
+    if ( (this.ngForm.valid || this.ngForm.pristine) ) {
+
+      this.formatError.emit( false );
+
+    } else {
+
+      this.formatError.emit( true );
+
     }
     
   }

@@ -4,6 +4,8 @@
     margin-bottom: 40px;
 }
 
+
+
 .button-wrapper {
     width: auto;
     max-width: none;
@@ -72,9 +74,9 @@
 }
 
 
-
 .input-wrapper {
     position: relative;
+
 
     input {
         position: relative;
@@ -85,6 +87,10 @@
         height: 100%;
         outline: none;
         color: $ROCKETMETALLIC;
+
+        &:disabled {
+            background: #fff;
+        }
     
         &::placeholder {
             color: lighten($ROCKETMETALLIC, 20%);
@@ -152,10 +158,18 @@ input, .button {
     transition: all 1s ease-in-out;
     overflow: hidden;
     padding-bottom: 5px;
+    opacity: 0;
+    animation-name: fadeOut;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
 
     &.open {
         transition: all 1s ease-in-out;
         max-height: 150px;
+        animation-name: fadeIn;
+        animation-delay: 500ms;
+        animation-duration: 300ms;
+        animation-fill-mode: both;
     }
 
     .alert {
@@ -172,6 +186,25 @@ input, .button {
                     5px  5px 1px $ROCKETMETALLIC;
     }
     
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 /* For Firefox */

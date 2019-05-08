@@ -11,6 +11,8 @@ export class RoomNameComponent implements OnInit {
   error: boolean;
   errorMessage: string;
 
+  name: string;
+
   constructor() {
 
     this.loading = false;
@@ -21,6 +23,21 @@ export class RoomNameComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onFormatError( error: boolean ) {
+
+    if( error ) {
+
+      this.error = true;
+      this.errorMessage = 'Invalid format. Only numbers and letters are allowed - e.g. "Room 1".';
+
+    } else {
+
+      this.error = false;
+
+    }
+
   }
 
 }

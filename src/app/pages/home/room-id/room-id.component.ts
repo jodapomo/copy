@@ -25,9 +25,6 @@ export class RoomIdComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
-
   }
 
   onSend( roomId: number ) {
@@ -48,6 +45,21 @@ export class RoomIdComponent implements OnInit {
         this.loading = false;
 
       });
+
+  }
+
+  onFormatError( error: boolean ) {
+
+    if( error ) {
+
+      this.error = true;
+      this.errorMessage = 'Format invalid. Only numbers are allowed.';
+
+    } else {
+
+      this.error = false;
+
+    }
 
   }
 
