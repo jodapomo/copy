@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Room } from '../models/room';
-import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,6 @@ export class RoomService {
   }
 
   newRoomNameIsSet(): boolean {
-    
     return this.newRoom.name.length > 0;
   }
 

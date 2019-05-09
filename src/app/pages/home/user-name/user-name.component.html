@@ -6,4 +6,7 @@
     [loading]="loading"
     [error]="error"
     [errorMessage]="errorMessage"
+    (formatError)="onFormatError( $event )"
+    (typing)="onTyping( $event )"
+    (send)="onSend( $event )"
 ></app-home-input-button>
