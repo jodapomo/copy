@@ -1,3 +1,4 @@
+import { NewRoomGuard } from './../../guards/new-room.guard';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', component: RoomIdComponent, data: { order: 1 } },
       { path: 'new-room/name', pathMatch: 'full', component: RoomNameComponent, data: { order: 2 } },
-      { path: 'new-room/username', pathMatch: 'full', component: UserNameComponent, data: { order: 3 } },
+      { path: 'new-room/username', pathMatch: 'full', component: UserNameComponent, canActivate: [NewRoomGuard], data: { order: 3 } },
     ],
   },
 

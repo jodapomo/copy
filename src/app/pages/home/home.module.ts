@@ -7,6 +7,7 @@ import { RoomIdComponent } from './room-id/room-id.component';
 import { RoomNameComponent } from './room-name/room-name.component';
 import { UserNameComponent } from './user-name/user-name.component';
 import { FormsModule } from '@angular/forms';
+import { NewRoomGuard } from 'src/app/guards/new-room.guard';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     ComponentsModule,
     HomeRoutingModule,
+    // NewRoomGuard,
   ]
 })
 export class HomeModule { }

@@ -11,12 +11,20 @@ export class RoomService {
 
   apiUrl: string;
 
+  newRoom: { name: string, username: string };
+  creatingRoom: boolean;
+
+  room: Room;
+
+  
   constructor( 
     private http: HttpClient,
   ) {
 
     this.apiUrl = environment.apiUrl;
+    this.creatingRoom = false;
 
+    this.newRoom = { name: '', username: '' };
   }
 
   getRooms() {
@@ -38,6 +46,19 @@ export class RoomService {
 
   createRoom( room: Room ) {
 
+  }
+
+  newRoomNameIsSet(): boolean {
+    
+    return this.newRoom.name.length > 0;
+  }
+
+  setNewRoomName( name: string ) {
+    this.newRoom.name = name;
+  }
+
+  setNewRoomUsername( username: string ) {
+    this.newRoom.username = username;
   }
 
 }

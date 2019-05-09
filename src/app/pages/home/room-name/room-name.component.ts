@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RoomService } from 'src/app/services/room.service';
 
 @Component({
   selector: 'app-room-name',
@@ -13,7 +15,10 @@ export class RoomNameComponent implements OnInit {
 
   name: string;
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private roomService: RoomService,
+  ) {
 
     this.loading = false;
     this.error = false;
@@ -23,6 +28,14 @@ export class RoomNameComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onSend( roomName: string ) {
+
+    this.roomService.setNewRoomName( roomName );
+
+    this.router.navigate(['/new-room/username']);
+
   }
 
   onFormatError( error: boolean ) {
@@ -38,6 +51,11 @@ export class RoomNameComponent implements OnInit {
 
     }
 
+  }
+
+  onTyping( roomId: number ) {
+    this.error = false;
+    return;
   }
 
 }
