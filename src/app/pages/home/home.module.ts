@@ -21,7 +21,6 @@ import { NewRoomGuard } from 'src/app/guards/new-room.guard';
     FormsModule,
     ComponentsModule,
     HomeRoutingModule,
-    // NewRoomGuard,
   ]
 })
 export class HomeModule { }

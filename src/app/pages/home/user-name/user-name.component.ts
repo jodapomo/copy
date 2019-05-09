@@ -32,9 +32,23 @@ export class UserNameComponent implements OnInit {
 
     this.roomService.setNewRoomUsername( username );
 
-    console.log(this.roomService.newRoom);
+    this.loading = true;
 
-    // this.router.navigate(['/room/username']);
+    this.roomService.createRoom()
+      .subscribe( room => {
+
+        this.error = false;
+        this.loading = false;
+
+        this.router.navigate([ '/room', room.id ]);
+
+      }, err => {
+
+        this.error = true;
+        this.errorMessage = err;
+        this.loading = false;
+
+      });
 
   }
 

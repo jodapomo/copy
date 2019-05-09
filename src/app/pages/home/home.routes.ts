@@ -7,7 +7,9 @@ import { RoomNameComponent } from './room-name/room-name.component';
 import { UserNameComponent } from './user-name/user-name.component';
 
 const routes: Routes = [
-  { path: '',
+  
+  { 
+    path: '',
     component: HomeComponent,
     children: [
       { path: '', pathMatch: 'full', component: RoomIdComponent, data: { order: 1 } },

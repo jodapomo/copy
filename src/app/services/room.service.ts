@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Room } from '../models/room';
+import { Room } from '../models/room.model';
+import { tap, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,7 +13,6 @@ export class RoomService {
   apiUrl: string;
 
   newRoom: { name: string, username: string };
-  creatingRoom: boolean;
 
   room: Room;
 
@@ -22,7 +22,6 @@ export class RoomService {
   ) {
 
     this.apiUrl = environment.apiUrl;
-    this.creatingRoom = false;
 
     this.newRoom = { name: '', username: '' };
   }
@@ -44,12 +43,29 @@ export class RoomService {
   }
 
 
-  createRoom( room: Room ) {
+  createRoom() {
+
+    const url = `${ this.apiUrl }/rooms`
+
+    return this.http.post<Room>( url, this.newRoom )
+      .pipe( 
+        map( (res: any) =>  new Room().deserialize( res.room ) ),
+        tap( (room: Room) => {
+
+          this.cleanNewRoom();
+          this.room = room;
+          
+        }),
+      );
 
   }
 
   newRoomNameIsSet(): boolean {
     return this.newRoom.name.length > 0;
+  }
+
+  cleanNewRoom() {
+    this.newRoom = { name: '', username: '' };
   }
 
   setNewRoomName( name: string ) {
