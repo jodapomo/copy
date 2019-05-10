@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { RoomIdComponent } from './room-id/room-id.component';
 import { RoomNameComponent } from './room-name/room-name.component';
 import { UserNameComponent } from './user-name/user-name.component';
+import { EnterRoomGuard } from '../../guards/enter-room.guard';
 
 const routes: Routes = [
   
@@ -12,9 +13,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', pathMatch: 'full', component: RoomIdComponent, data: { order: 1 } },
-      { path: 'new-room/name', pathMatch: 'full', component: RoomNameComponent, data: { order: 2 } },
-      { path: 'new-room/username', pathMatch: 'full', component: UserNameComponent, canActivate: [NewRoomGuard], data: { order: 3 } },
+      { path: '', component: RoomIdComponent, data: { order: 1 } },
+      { path: 'new-room/name', component: RoomNameComponent, data: { order: 2 } },
+      { path: 'new-room/username', component: UserNameComponent, canActivate: [NewRoomGuard], data: { order: 3, operation: 'new-room' } },
+      { path: 'enter-room/username', component: UserNameComponent, canActivate: [EnterRoomGuard], data: { order: 3, operation: 'enter-room' } },
     ],
   },
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from '../../../services/room.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-room-id',
@@ -15,6 +16,7 @@ export class RoomIdComponent implements OnInit {
 
   constructor(
     private roomService: RoomService,
+    private router: Router,
   ) {
 
     this.loading = false;
@@ -34,9 +36,10 @@ export class RoomIdComponent implements OnInit {
     this.roomService.getRoomById( roomId )
       .subscribe( room => {
 
-        console.log(room);
         this.error = false;
         this.loading = false;
+
+        this.router.navigate([ '/enter-room/username' ]);
 
       }, err => {
 

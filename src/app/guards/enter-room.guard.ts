@@ -5,8 +5,8 @@ import { RoomService } from '../services/room.service';
 @Injectable({
   providedIn: 'root'
 })
-export class NewRoomGuard implements CanActivate {
-
+export class EnterRoomGuard implements CanActivate {
+  
   constructor( 
     private roomService: RoomService,
     private router: Router,
@@ -14,7 +14,7 @@ export class NewRoomGuard implements CanActivate {
 
   canActivate(): boolean {
 
-    if ( this.roomService.newRoomNameIsSet() ) {
+    if ( this.roomService.validRoom() ) {
       return true;
     }
 

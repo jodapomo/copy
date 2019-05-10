@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
 
 @Component({
@@ -13,8 +13,11 @@ export class UserNameComponent implements OnInit {
   error: boolean;
   errorMessage: string;
 
+  operation: string;
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private roomService: RoomService,
   ) {
 
@@ -26,13 +29,42 @@ export class UserNameComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.operation = this.route.snapshot.data['operation'];
   }
 
   onSend( username: string ) {
 
-    this.roomService.setNewRoomUsername( username );
+    if ( this.operation === 'new-room') {
+
+      this.createRoom( username );
+
+    } else if ( this.operation === 'enter-room') {
+
+      this.enterRoom( username );
+
+    } else {
+      this.router.navigate([ '/' ]);
+    }
+
+  }
+
+  enterRoom( username ) {
 
     this.loading = true;
+
+    this.roomService.enterRoom( username )
+      .subscribe( roomId => {
+        console.log(this.roomService.room);
+        this.router.navigate([ '/room', roomId ]);
+      } );
+
+  }
+
+  createRoom( username: string ) {
+
+    this.loading = true;
+    
+    this.roomService.setNewRoomUsername( username );
 
     this.roomService.createRoom()
       .subscribe( room => {
