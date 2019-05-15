@@ -14,7 +14,7 @@ export class EnterRoomGuard implements CanActivate {
 
   canActivate(): boolean {
 
-    if ( this.roomService.validRoom() ) {
+    if ( this.roomService.isValidRoom() ) {
       return true;
     }
 

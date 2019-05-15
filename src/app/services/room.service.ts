@@ -104,14 +104,13 @@ export class RoomService {
         map( _ => this.room.id ),
       );
 
-
   }
 
-  validRoom(): boolean {
+  isValidRoom(): boolean {
     return this.room &&  this.room._id.length > 0;
   }
 
-  newRoomNameIsSet(): boolean {
+  isNewRoomNameSet(): boolean {
     return this.newRoom.name.length > 0;
   }
 

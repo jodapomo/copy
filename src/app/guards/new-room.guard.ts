@@ -14,7 +14,7 @@ export class NewRoomGuard implements CanActivate {
 
   canActivate(): boolean {
 
-    if ( this.roomService.newRoomNameIsSet() ) {
+    if ( this.roomService.isNewRoomNameSet() ) {
       return true;
     }
 
