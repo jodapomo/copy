@@ -48,31 +48,8 @@ export class RoomService {
     return this.http.get( url )
       .pipe(
         map( (res: any) =>  new Room().deserialize( res.room ) ),
-        tap( (room: Room) => {
-
-          this.cleanNewRoom();
-          this.room = room;
-          
-        }),
+        tap( (room: Room) => this.room = room ),
       );
-
-  }
-
-
-  createRoom() {
-
-    const url = `${ this.apiUrl }/rooms`
-
-    return this.http.post<Room>( url, this.newRoom )
-      .pipe( 
-        map( (res: any) =>  new Room().deserialize( res.room ) ),
-        tap( (room: Room) => {
-
-          this.cleanNewRoom();
-          this.room = room;
-
-      }),
-    );
 
   }
 
@@ -110,20 +87,6 @@ export class RoomService {
     return this.room &&  this.room._id.length > 0;
   }
 
-  isNewRoomNameSet(): boolean {
-    return this.newRoom.name.length > 0;
-  }
 
-  cleanNewRoom() {
-    this.newRoom = { name: '', username: '' };
-  }
-
-  setNewRoomName( name: string ) {
-    this.newRoom.name = name;
-  }
-
-  setNewRoomUsername( username: string ) {
-    this.newRoom.username = username;
-  }
 
 }

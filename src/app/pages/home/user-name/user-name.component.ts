@@ -62,25 +62,25 @@ export class UserNameComponent implements OnInit {
 
   createRoom( username: string ) {
 
-    this.loading = true;
+    // this.loading = true;
     
-    this.roomService.setNewRoomUsername( username );
+    // this.roomService.setNewRoomUsername( username );
 
-    this.roomService.createRoom()
-      .subscribe( room => {
+    // this.roomService.createRoom()
+    //   .subscribe( room => {
 
-        this.error = false;
-        this.loading = false;
+    //     this.error = false;
+    //     this.loading = false;
 
-        this.router.navigate([ '/room', room.id ]);
+    //     this.router.navigate([ '/room', room.id ]);
 
-      }, err => {
+    //   }, err => {
 
-        this.error = true;
-        this.errorMessage = err;
-        this.loading = false;
+    //     this.error = true;
+    //     this.errorMessage = err;
+    //     this.loading = false;
 
-      });
+    //   });
 
   }
 

@@ -32,9 +32,9 @@ export class RoomNameComponent implements OnInit {
 
   onSend( roomName: string ) {
 
-    this.roomService.setNewRoomName( roomName );
+    // this.roomService.setNewRoomName( roomName );
 
-    this.router.navigate(['/new-room/username']);
+    // this.router.navigate(['/new-room/username']);
 
   }
 

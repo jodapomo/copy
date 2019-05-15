@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from '../../../services/room.service';
 import { Router } from '@angular/router';
+import { HomeService } from '../../../services/home.service';
 
 @Component({
   selector: 'app-room-id',
@@ -15,7 +15,7 @@ export class RoomIdComponent implements OnInit {
   errorMessage: string;
 
   constructor(
-    private roomService: RoomService,
+    private homeServie: HomeService,
     private router: Router,
   ) {
 
@@ -33,13 +33,13 @@ export class RoomIdComponent implements OnInit {
 
     this.loading = true;
 
-    this.roomService.getRoomById( roomId )
-      .subscribe( room => {
+    this.homeServie.checkRoom( roomId )
+      .subscribe( res => {
 
         this.error = false;
         this.loading = false;
 
-        this.router.navigate([ '/enter-room/username' ]);
+        // this.router.navigate([ '/enter-room/username' ]);
 
       }, err => {
 

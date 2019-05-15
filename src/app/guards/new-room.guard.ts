@@ -14,11 +14,11 @@ export class NewRoomGuard implements CanActivate {
 
   canActivate(): boolean {
 
-    if ( this.roomService.isNewRoomNameSet() ) {
-      return true;
-    }
+    // if ( this.roomService.isNewRoomNameSet() ) {
+    //   return true;
+    // }
 
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
     return false;
   }
   
