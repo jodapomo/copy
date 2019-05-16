@@ -11,12 +11,8 @@ export class HomeService {
 
   apiUrl: string;
 
-  newRoom: {
-    name: string,
-    username: string,
-  };
-
-  loginRoom: {
+  
+  room: {
     id: number,
     password: string,
     username: string,
@@ -28,9 +24,6 @@ export class HomeService {
     
     this.apiUrl = environment.apiUrl;
 
-    this.newRoom = { name: '', username: '' };
-    this.loginRoom = { id: undefined, password: '', username: '' };
-
   }
 
   checkRoom( roomId: number ) {
@@ -39,48 +32,9 @@ export class HomeService {
 
     return this.http.get( url )
       .pipe(
-        tap( res => console.log ),
+        map( (res: any) => res.locked ),
       );
 
-
-  }
-
-  createRoom() {
-
-    const url = `${ this.apiUrl }/rooms`
-
-    return this.http.post<Room>( url, this.newRoom )
-      .pipe( 
-        map( (res: any) =>  new Room().deserialize( res.room ) ),
-        tap( (room: Room) => {
-
-          this.cleanNewRoom();
-
-      }),
-    );
-
-  }
-
-
-
-  isNewRoomNameSet(): boolean {
-    return this.newRoom.name.length > 0;
-  }
-
-  cleanNewRoom() {
-    this.newRoom = { name: '', username: '' };
-  }
-
-  cleanLoginRoom() {
-    this.loginRoom = { id: undefined, password: '', username: '' };
-  }
-
-  setNewRoomName( name: string ) {
-    this.newRoom.name = name;
-  }
-
-  setNewRoomUsername( username: string ) {
-    this.newRoom.username = username;
-  }
+  } 
 
 }

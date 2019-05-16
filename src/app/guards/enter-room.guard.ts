@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { RoomService } from '../services/room.service';
+import { EnterRoomService } from '../services/enter-room.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +8,13 @@ import { RoomService } from '../services/room.service';
 export class EnterRoomGuard implements CanActivate {
   
   constructor( 
-    private roomService: RoomService,
+    private enterRoomService: EnterRoomService,
     private router: Router,
   ) {}
 
   canActivate(): boolean {
 
-    if ( this.roomService.isValidRoom() ) {
+    if ( this.enterRoomService.isRoomValid() ) {
       return true;
     }
 

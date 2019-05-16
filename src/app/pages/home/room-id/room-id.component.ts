@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../../services/home.service';
+import { EnterRoomService } from '../../../services/enter-room.service';
 
 @Component({
   selector: 'app-room-id',
@@ -15,8 +16,9 @@ export class RoomIdComponent implements OnInit {
   errorMessage: string;
 
   constructor(
-    private homeServie: HomeService,
     private router: Router,
+    private homeServie: HomeService,
+    private enterRoomService: EnterRoomService,
   ) {
 
     this.loading = false;
@@ -34,12 +36,22 @@ export class RoomIdComponent implements OnInit {
     this.loading = true;
 
     this.homeServie.checkRoom( roomId )
-      .subscribe( res => {
+      .subscribe( locked => {
 
         this.error = false;
         this.loading = false;
+        
+        this.enterRoomService.setRoomId( roomId );
 
-        // this.router.navigate([ '/enter-room/username' ]);
+        if ( locked ) {
+
+          this.router.navigate([ '/enter-room/password' ]);
+
+        } else {
+          
+          this.router.navigate([ '/enter-room/username' ]);
+          
+        }
 
       }, err => {
 

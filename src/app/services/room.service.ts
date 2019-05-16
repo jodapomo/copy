@@ -83,10 +83,4 @@ export class RoomService {
 
   }
 
-  isValidRoom(): boolean {
-    return this.room &&  this.room._id.length > 0;
-  }
-
-
-
 }
