@@ -1,56 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HomeService } from '../../../services/home/home.service';
 import { EnterRoomService } from '../../../services/home/enter-room.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-room-id',
-  templateUrl: './room-id.component.html',
-  styleUrls: ['./room-id.component.scss']
+  selector: 'app-room-password',
+  templateUrl: './room-password.component.html',
+  styleUrls: ['./room-password.component.scss']
 })
-export class RoomIdComponent implements OnInit {
+export class RoomPasswordComponent implements OnInit {
 
   loading: boolean;
   error: boolean;
-
   errorMessage: string;
+
+  password: string;
 
   constructor(
     private router: Router,
-    private homeServie: HomeService,
     private enterRoomService: EnterRoomService,
   ) {
 
     this.loading = false;
     this.error = false;
 
-    this.errorMessage = 'The id entered is not valid or does not exist!';
+    this.errorMessage = 'An error occurred with the password.'
 
   }
 
   ngOnInit() {
   }
 
-  onSend( roomId: number ) {
+  onSend( password: string ) {
 
     this.loading = true;
+    this.enterRoomService.setRoomPassword( password );
 
-    this.homeServie.checkRoom( roomId )
-      .subscribe( locked => {
+    this.enterRoomService.checkCredentials()
+      .subscribe( match => {
 
         this.error = false;
         this.loading = false;
-        
-        this.enterRoomService.setRoomId( roomId );
 
-        if ( locked ) {
-
-          this.router.navigate([ '/enter-room/password' ]);
-
-        } else {
-          
+        if (match) {
           this.router.navigate([ '/enter-room/username' ]);
-          
         }
 
       }, err => {
@@ -68,7 +60,7 @@ export class RoomIdComponent implements OnInit {
     if( error ) {
 
       this.error = true;
-      this.errorMessage = 'Format invalid. Only numbers are allowed.';
+      this.errorMessage = 'Invalid format. Only numbers and letters are allowed - e.g. "Room 1".';
 
     } else {
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { Room } from '../models/room.model';
+import { environment } from '../../../environments/environment';
+import { Room } from '../../models/room.model';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 

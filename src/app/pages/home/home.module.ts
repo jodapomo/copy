@@ -8,13 +8,15 @@ import { RoomNameComponent } from './room-name/room-name.component';
 import { UserNameComponent } from './user-name/user-name.component';
 import { FormsModule } from '@angular/forms';
 import { NewRoomGuard } from 'src/app/guards/new-room.guard';
+import { RoomPasswordComponent } from './room-password/room-password.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     RoomIdComponent,
     RoomNameComponent,
-    UserNameComponent
+    UserNameComponent,
+    RoomPasswordComponent
   ],
   imports: [
     CommonModule,

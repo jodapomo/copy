@@ -50,6 +50,21 @@
           [disabled]="loading"
           autofocus
         >
+
+        <input
+          #input
+          
+          *ngIf="type === 'password'"
+          [(ngModel)]="value"
+          name="value"
+          (keyup)="onTyping()"
+          (keydown.enter)="pressButton()"
+          (keyup.enter)="releaseButtonAndSend()"
+          type="password"
+          [placeholder]="placeholder"
+          [disabled]="loading"
+          autofocus
+        >
   
         <span *ngIf="value.length > 0 && !loading" (click)="clear()" class="icon-wrapper">
           <i class="fas fa-times-circle input-button erase"></i>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RoomService } from 'src/app/services/room.service';
+import { RoomService } from 'src/app/services/room/room.service';
 
 @Component({
   selector: 'app-room-name',
@@ -12,8 +12,6 @@ export class RoomNameComponent implements OnInit {
   loading: boolean;
   error: boolean;
   errorMessage: string;
-
-  name: string;
 
   constructor(
     private router: Router,

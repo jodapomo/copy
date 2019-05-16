@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { Room } from '../models/room.model';
+import { environment } from '../../../environments/environment';
+import { Room } from '../../models/room.model';
 import { tap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { TempUserService } from './temp-user.service';
-import { TempUser } from '../models/temp-user.model';
+import { TempUserService } from '../temp-user.service';
+import { TempUser } from '../../models/temp-user.model';
 
 
 @Injectable({
