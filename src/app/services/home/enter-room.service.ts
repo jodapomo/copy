@@ -27,12 +27,15 @@ export class EnterRoomService {
 
     this.apiUrl = environment.apiUrl;
 
-    this.room = { id: undefined, locked: false, password: '', username: '' };
+    this.room = { id: undefined, locked: false, password: undefined, username: '' };
 
   }
 
   login() {
     return this.loginService.login( this.room )
+      .pipe(
+        tap( _ => this.clearRoom() )
+      );
   }
   
 
@@ -50,7 +53,7 @@ export class EnterRoomService {
 
 
   clearRoom() {
-    this.room = { id: undefined, locked: false, password: '', username: '' };
+    this.room = { id: undefined, locked: false, password: undefined, username: '' };
   }
 
   setRoomId( id: number ) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { RoomService } from '../services/room/room.service';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { NewRoomService } from '../services/home/new-room.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +8,31 @@ import { RoomService } from '../services/room/room.service';
 export class NewRoomGuard implements CanActivate {
 
   constructor( 
-    private roomService: RoomService,
+    private newRoomService: NewRoomService,
     private router: Router,
   ) {}
 
-  canActivate(): boolean {
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
 
-    // if ( this.roomService.isNewRoomNameSet() ) {
-    //   return true;
-    // }
+    const step = next.data['step'];
 
-    // this.router.navigate(['/']);
+    if ( step === 'password' ) {
+
+      if ( this.newRoomService.isRoomNameSetAndLocked() ) {
+        return true;
+      }
+
+    } else if ( step === 'username' ) {
+
+      if ( this.newRoomService.isRoomCreatable() ) {
+        return true;
+      }
+
+    }
+
+    this.router.navigate(['/']);
     return false;
   }
   

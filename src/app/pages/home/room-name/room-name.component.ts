@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RoomService } from 'src/app/services/room/room.service';
+import { NewRoomService } from '../../../services/home/new-room.service';
 
 @Component({
   selector: 'app-room-name',
@@ -12,11 +12,12 @@ export class RoomNameComponent implements OnInit {
   loading: boolean;
   error: boolean;
   errorMessage: string;
+  
   locked: boolean;
 
   constructor(
     private router: Router,
-    private roomService: RoomService,
+    private newRoomService: NewRoomService,
   ) {
 
     this.loading = false;
@@ -32,10 +33,20 @@ export class RoomNameComponent implements OnInit {
 
   onSend( roomName: string ) {
 
-    // this.roomService.setNewRoomName( roomName );
+    this.newRoomService.setRoomName( roomName );
 
-    // this.router.navigate(['/new-room/username']);
+    if ( this.locked ) {
 
+      this.newRoomService.setRoomLocked( true );
+      this.router.navigate(['/new-room/password']);
+
+    } else {
+
+      this.newRoomService.setRoomLocked( false );
+      this.router.navigate(['/new-room/username']);
+
+    }
+    
   }
 
   onFormatError( error: boolean ) {

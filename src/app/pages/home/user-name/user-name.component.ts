@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room/room.service';
 import { EnterRoomService } from '../../../services/home/enter-room.service';
+import { NewRoomService } from '../../../services/home/new-room.service';
 
 @Component({
   selector: 'app-user-name',
@@ -20,6 +21,7 @@ export class UserNameComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private enterRoomService: EnterRoomService,
+    private newRoomService: NewRoomService,
   ) {
 
     this.loading = false;
@@ -41,8 +43,7 @@ export class UserNameComponent implements OnInit {
 
     } else if ( this.operation === 'enter-room') {
 
-      this.enterRoomService.setRoomUsername( username );
-      this.enterRoom();
+      this.enterRoom( username );
 
     } else {
       this.router.navigate([ '/' ]);
@@ -50,9 +51,11 @@ export class UserNameComponent implements OnInit {
 
   }
 
-  enterRoom() {
+  enterRoom( username: string ) {
 
     this.loading = true;
+    this.enterRoomService.setRoomUsername( username );
+
     this.enterRoomService.login()
       .subscribe();
 
@@ -60,25 +63,11 @@ export class UserNameComponent implements OnInit {
 
   createRoom( username: string ) {
 
-    // this.loading = true;
-    
-    // this.roomService.setNewRoomUsername( username );
+    this.loading = true;
+    this.newRoomService.setRoomUsername( username );
 
-    // this.roomService.createRoom()
-    //   .subscribe( room => {
-
-    //     this.error = false;
-    //     this.loading = false;
-
-    //     this.router.navigate([ '/room', room.id ]);
-
-    //   }, err => {
-
-    //     this.error = true;
-    //     this.errorMessage = err;
-    //     this.loading = false;
-
-    //   });
+    this.newRoomService.createRoomAndLogin()
+      .subscribe();
 
   }
 

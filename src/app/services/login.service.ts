@@ -35,7 +35,6 @@ export class LoginService {
 
     return this.http.post( url, newRoom )
       .pipe(
-        map( (res: any) => res.ok ),
         tap( res => console.log(res) ),
       );
 

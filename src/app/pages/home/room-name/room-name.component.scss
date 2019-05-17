@@ -6,31 +6,50 @@
 }
 
 .lock-button {
-    margin: 0;
-    cursor: pointer;
-    flex-flow: column;
-    align-items: center;
+  margin: 0;
+  cursor: pointer;
+  flex-flow: column;
+  align-items: center;
 
-    .icon {
-        position: relative;
-        // margin-right: 15px;
-        display: block;
+  .label {
+    color: $ROCKETMETALLIC;
+    display: block;
+    text-align: center;
+
+    span {
+      animation-duration: 2s;
+    }
+  }
+
+  .icon {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+
+    .btn-lock {
+      transition: background .2s ease-in-out;
+      position: relative;
+      background: $BLACKSHADOW;
+      box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                  2px  2px 1px $ROCKETMETALLIC,
+                  3px  3px 1px $ROCKETMETALLIC,
+                  4px  4px 1px $ROCKETMETALLIC,
+                  5px  5px 1px $ROCKETMETALLIC;
+
+      &:hover {
+        background: darken($BLACKSHADOW, 8%);
+      }
     }
 
-    .label {
-        // display: flex;
-        // align-items: center;
-        color: $JET;
-        display: block;
-        // width: 300px;
+    #inpLock:checked + label {
+      background: darken($BLACKSHADOW, 8%);
+      top: 2px;
+      left: 2px;
+      box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                  2px  2px 1px $ROCKETMETALLIC,
+                  3px  3px 1px $ROCKETMETALLIC;
     }
-
-    &:hover {
-        .btn-lock {
-            box-shadow: 0px 0px 6px $JET;
-            transition: all 300ms ease-in-out;
-        }
-    }
+  }
 }
 
 label {
@@ -40,19 +59,19 @@ label {
 
 .btn-lock {
     display: inline-block;
-    background: #ff5b5b;
     width: 64px;
     height: 64px;
     box-sizing: border-box;
-    padding: 12px 0 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 300ms ease-in-out;
     -webkit-tap-highlight-color: transparent;
   }
   .btn-lock svg {
     fill: none;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(4px, 0, 0);
   }
   .btn-lock svg .bling {
     stroke: #fff;
@@ -81,9 +100,7 @@ label {
   #inpLock {
     display: none;
   }
-  #inpLock:checked + label {
-    background: #20cca5;
-  }
+
   #inpLock:checked + label svg {
     opacity: 1;
   }
