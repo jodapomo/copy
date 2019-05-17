@@ -9,7 +9,7 @@ import { EnterRoomGuard } from '../../guards/enter-room.guard';
 import { RoomPasswordComponent } from './room-password/room-password.component';
 
 const routes: Routes = [
-  
+
   { 
     path: '',
     component: HomeComponent,
@@ -19,8 +19,8 @@ const routes: Routes = [
       { path: 'new-room/name', component: RoomNameComponent, data: { order: 2 } },
       { path: 'new-room/username', component: UserNameComponent, canActivate: [NewRoomGuard], data: { order: 3, operation: 'new-room' } },
 
-      { path: 'enter-room/password', component: RoomPasswordComponent, canActivate: [EnterRoomGuard], data: { order: 3, operation: 'enter-room' } },
-      { path: 'enter-room/username', component: UserNameComponent, canActivate: [EnterRoomGuard], data: { order: 4, operation: 'enter-room' } },
+      { path: 'enter-room/password', component: RoomPasswordComponent, canActivate: [EnterRoomGuard], data: { order: 3, operation: 'enter-room', step: 'password' } },
+      { path: 'enter-room/username', component: UserNameComponent, canActivate: [EnterRoomGuard], data: { order: 4, operation: 'enter-room', step: 'username' } },
     ],
   },
 

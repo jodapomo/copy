@@ -28,6 +28,7 @@ export class RoomPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.enterRoomService.setPasswordCheckedFalse();
   }
 
   onSend( password: string ) {

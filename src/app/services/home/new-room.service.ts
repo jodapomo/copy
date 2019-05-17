@@ -13,6 +13,7 @@ export class NewRoomService {
 
   room: {
     name: string,
+    password: string,
     username: string,
   };
 
@@ -23,7 +24,7 @@ export class NewRoomService {
 
     this.apiUrl = environment.apiUrl;
 
-    this.room = { name: '', username: '' };
+    this.room = { name: '', password: '', username: '' };
   }
 
   createRoom() {
@@ -47,7 +48,7 @@ export class NewRoomService {
   }
 
   clearRoom() {
-    this.room = { name: '', username: '' };
+    this.room = { name: '', password: '', username: '' };
   }
 
 

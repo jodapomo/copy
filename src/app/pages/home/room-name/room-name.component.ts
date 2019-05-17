@@ -12,6 +12,7 @@ export class RoomNameComponent implements OnInit {
   loading: boolean;
   error: boolean;
   errorMessage: string;
+  locked: boolean;
 
   constructor(
     private router: Router,
@@ -20,6 +21,7 @@ export class RoomNameComponent implements OnInit {
 
     this.loading = false;
     this.error = false;
+    this.locked = false;
 
     this.errorMessage = 'An error occurred with the name selection.'
 

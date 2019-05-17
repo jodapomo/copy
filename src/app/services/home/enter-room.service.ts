@@ -1,30 +1,40 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { LoginService } from '../login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnterRoomService {
 
-  apiUrl: string;
+  private apiUrl: string;
 
-  room: {
+  private room: {
     id: number,
+    locked: boolean,
     password: string,
     username: string,
   }
 
+  private passwordChecked: boolean;
+
   constructor(
     private http: HttpClient,
+    private loginService: LoginService,
   ) {
 
     this.apiUrl = environment.apiUrl;
 
-    this.room = { id: undefined, password: '', username: '' };
+    this.room = { id: undefined, locked: false, password: '', username: '' };
 
   }
+
+  login() {
+    return this.loginService.login( this.room )
+  }
+  
 
   checkCredentials() {
 
@@ -33,24 +43,52 @@ export class EnterRoomService {
     return this.http.post( url, { password: this.room.password } )
       .pipe(
         map( (res: any) => res.ok ),
+        tap( _ => this.passwordChecked = true ),
       );
 
   }
 
 
   clearRoom() {
-    this.room = { id: undefined, password: '', username: '' };
+    this.room = { id: undefined, locked: false, password: '', username: '' };
   }
 
   setRoomId( id: number ) {
     this.room.id = id;
   }
 
+  setRoomLocked( locked: boolean ) {
+    this.room.locked = locked;
+  }
+
   setRoomPassword( password: string ) {
     this.room.password = password;
+  }
+
+  setRoomUsername( username: string ) {
+    this.room.username = username;
+  }
+
+  setPasswordCheckedFalse() {
+    this.passwordChecked = false;
   }
 
   isRoomValid(): boolean {
     return this.room.id > 0;
   }
+
+  isRoomLoggable(): boolean {
+
+    if ( this.room.locked ) {
+      
+      return this.room.id > 0 && this.passwordChecked;
+
+    } else {
+
+      return this.room.id > 0;
+
+    }
+
+  }
+
 }

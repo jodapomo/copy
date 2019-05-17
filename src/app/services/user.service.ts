@@ -4,7 +4,7 @@ import { TempUser } from '../models/temp-user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TempUserService {
+export class UserService {
 
   user: TempUser;
   token: string;

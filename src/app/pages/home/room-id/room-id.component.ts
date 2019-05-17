@@ -45,10 +45,12 @@ export class RoomIdComponent implements OnInit {
 
         if ( locked ) {
 
+          this.enterRoomService.setRoomLocked( true );
           this.router.navigate([ '/enter-room/password' ]);
 
         } else {
           
+          this.enterRoomService.setRoomLocked( false );
           this.router.navigate([ '/enter-room/username' ]);
           
         }
