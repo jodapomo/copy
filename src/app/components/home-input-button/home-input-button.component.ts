@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './home-input-button.component.html',
   styleUrls: ['./home-input-button.component.scss']
 })
-export class HomeInputButtonComponent implements OnInit, AfterViewInit {
+export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() placeholder: string;
   @Input() type: string;
@@ -18,8 +18,12 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit {
   @Input() error: boolean;
   @Input() errorMessage: string;
 
+  @Input() presetedValue: string;
+
   @Output() typing: EventEmitter<number | string> = new EventEmitter<number | string>();
   @Output() send: EventEmitter<number | string> = new EventEmitter<number | string>();
+
+  @Output() clean: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   @Output() formatError: EventEmitter<boolean> = new EventEmitter<boolean>();
   
@@ -50,8 +54,19 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit {
     this.value = '';
 
   }
-
+  
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if( changes.presetedValue && 
+        changes.presetedValue.currentValue && 
+        String( changes.presetedValue.currentValue ).length > 0 ) 
+    {
+      this.value = String( this.presetedValue );
+    }
+
   }
 
   ngAfterViewInit() {
@@ -75,6 +90,7 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit {
 
   clear() {
     this.value = '';
+    this.clean.emit(true);
     this.inputElement.nativeElement.focus();
   }
 
@@ -90,11 +106,7 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit {
 
   onTyping() {
     
-    if ( this.value.length > 0 ) {
-
-      this.typing.emit( this.value );
-
-    }
+    this.typing.emit( this.value );
 
     if ( (this.ngForm.valid || this.ngForm.pristine) ) {
 

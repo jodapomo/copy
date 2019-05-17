@@ -6,9 +6,11 @@
     [loading]="loading"
     [error]="error"
     [errorMessage]="errorMessage"
+    [presetedValue]="presetedValue"
     (formatError)="onFormatError( $event )"
     (typing)="onTyping( $event )"
     (send)="onSend( $event )"
+    (clean)="onClean()"
 ></app-home-input-button>
 
 <div class="row lock-button-wrapper">

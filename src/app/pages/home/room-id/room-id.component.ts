@@ -13,6 +13,8 @@ export class RoomIdComponent implements OnInit {
   loading: boolean;
   error: boolean;
 
+  presetedValue: number;
+
   errorMessage: string;
 
   constructor(
@@ -29,6 +31,11 @@ export class RoomIdComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    if ( this.enterRoomService.isRoomValid() ) {
+      this.presetedValue = this.enterRoomService.getRoomId();
+    }
+
   }
 
   onSend( roomId: number ) {
@@ -80,7 +87,12 @@ export class RoomIdComponent implements OnInit {
 
   }
 
-  onTyping( roomId: number ) {
+  onTyping( value: string ) {
+    
+    if ( value.length === 0 ) {
+      this.enterRoomService.clearRoom();
+    }
+
     this.error = false;
     return;
   }

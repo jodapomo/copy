@@ -76,19 +76,23 @@ export class EnterRoomService {
     this.passwordChecked = false;
   }
 
+  getRoomId(): number {
+    return this.room.id;
+  }
+
   isRoomValid(): boolean {
-    return this.room.id > 0;
+    return this.room.id && this.room.id > 0;
   }
 
   isRoomLoggable(): boolean {
 
     if ( this.room.locked ) {
       
-      return this.room.id > 0 && this.passwordChecked;
+      return this.room.id && this.room.id > 0 && this.passwordChecked;
 
     } else {
 
-      return this.room.id > 0;
+      return this.room.id && this.room.id > 0;
 
     }
 

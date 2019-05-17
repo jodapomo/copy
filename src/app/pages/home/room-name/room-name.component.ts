@@ -12,6 +12,8 @@ export class RoomNameComponent implements OnInit {
   loading: boolean;
   error: boolean;
   errorMessage: string;
+
+  presetedValue: string;
   
   locked: boolean;
 
@@ -29,8 +31,12 @@ export class RoomNameComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+    
+    if ( this.newRoomService.isRoomNameSet() ) {
+      this.presetedValue = this.newRoomService.getRoomName();
+    }
 
+  }
   onSend( roomName: string ) {
 
     this.newRoomService.setRoomName( roomName );
@@ -64,9 +70,18 @@ export class RoomNameComponent implements OnInit {
 
   }
 
-  onTyping( roomId: number ) {
+  onTyping( value: string ) {
+    
+    if ( value.length === 0 ) {
+      this.newRoomService.clearRoom();
+    }
+
     this.error = false;
     return;
+  }
+
+  onClean() {
+    this.newRoomService.clearRoom();
   }
 
 }

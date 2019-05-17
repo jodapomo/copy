@@ -51,6 +51,10 @@ export class NewRoomService {
     return this.room.name.length > 0 && this.room.locked;
   }
 
+  isRoomNameSet(): boolean {
+    return this.room.name && this.room.name.length > 0;
+  }
+
   isRoomCreatable(): boolean {
 
     if ( this.room.locked ) {
@@ -59,7 +63,7 @@ export class NewRoomService {
 
     } else {
 
-      return this.room.name.length > 0;
+      return this.room.name && this.room.name.length > 0;
 
     }
 
@@ -83,6 +87,10 @@ export class NewRoomService {
 
   setRoomUsername( username: string ) {
     this.room.username = username;
+  }
+
+  getRoomName() {
+    return this.room.name;
   }
 
 }
