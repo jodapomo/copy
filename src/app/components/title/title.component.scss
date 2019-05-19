@@ -1,23 +1,42 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 @import "../../../assets/css/variables.scss";
 
-.row.fz-100 {
-	padding-bottom: 50px;
-	&.h1 {
-		font-size: 100px;
+.row.room-page {
+	padding: 10px;
+	padding-bottom: 34px;
+	margin-bottom: 10px;
+
+	h1.room-page {
+		font-size: 80px;
+		text-shadow: 1px  1px 1px $ROCKETMETALLIC,
+					 2px  2px 1px $ROCKETMETALLIC,
+					 3px  3px 1px $ROCKETMETALLIC,
+					 4px  4px 1px $ROCKETMETALLIC,
+					 5px  5px 1px $ROCKETMETALLIC,
+					 6px  6px 1px $ROCKETMETALLIC,
+					 7px  7px 1px $ROCKETMETALLIC,
+					 8px  8px 1px $ROCKETMETALLIC,
+					 9px  9px 1px $ROCKETMETALLIC,
+					10px 10px 1px $ROCKETMETALLIC,
+					11px 11px 1px $ROCKETMETALLIC,
+					12px 12px 1px $ROCKETMETALLIC,
+					13px 13px 1px $ROCKETMETALLIC,
+					14px 14px 1px $ROCKETMETALLIC,
+					15px 15px 1px $ROCKETMETALLIC,
 	}
 }
 
 .row {
 	padding-bottom: 100px;
+
+	a {
+		text-decoration: none;
+		margin: 0 auto;
+	}
 }
 
 h1.fz-200 {
     font-size: 200px;
-}
-
-h1.fz-100 {
-    font-size: 100px;
 }
 
 h1 {
@@ -66,8 +85,5 @@ h1 {
   
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-
-    animation-duration: 0.5s;
-    animation-delay: 0.5s;
 }
 

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room/room.service';
 import { EnterRoomService } from '../../../services/home/enter-room.service';
 import { NewRoomService } from '../../../services/home/new-room.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-name',
@@ -37,17 +38,25 @@ export class UserNameComponent implements OnInit {
 
   onSend( username: string ) {
 
+    let roomIdObservable: Observable<number>;
+
     if ( this.operation === 'new-room') {
 
-      this.createRoom( username );
+      roomIdObservable = this.createRoom( username );
 
     } else if ( this.operation === 'enter-room') {
 
-      this.enterRoom( username );
+      roomIdObservable = this.enterRoom( username );
 
     } else {
-      this.router.navigate([ '/' ]);
+
+      return this.router.navigate([ '/' ]);
+
     }
+
+
+    roomIdObservable.subscribe( roomId => this.router.navigate([ '/room', roomId ]) );
+
 
   }
 
@@ -56,8 +65,8 @@ export class UserNameComponent implements OnInit {
     this.loading = true;
     this.enterRoomService.setRoomUsername( username );
 
-    this.enterRoomService.login()
-      .subscribe();
+    return this.enterRoomService.login();
+      
 
   }
 
@@ -66,8 +75,8 @@ export class UserNameComponent implements OnInit {
     this.loading = true;
     this.newRoomService.setRoomUsername( username );
 
-    this.newRoomService.createRoomAndLogin()
-      .subscribe();
+    return this.newRoomService.createRoomAndLogin();
+      
 
   }
 

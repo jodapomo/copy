@@ -1,0 +1,29 @@
+@import "../../../assets/css/variables.scss";
+
+.main-title {
+    animation-duration: 1s;
+    animation-delay: 700ms;
+}
+
+.room {
+    background: $WHITE;
+    height: calc( 100vh - 135px );
+    width: 1400px;
+    margin: 0 auto;
+    border-radius: 3px;
+    animation-duration: 500ms;
+    box-shadow:	1px  1px 1px $ROCKETMETALLIC,
+                2px  2px 1px $ROCKETMETALLIC,
+                3px  3px 1px $ROCKETMETALLIC,
+                4px  4px 1px $ROCKETMETALLIC,
+                5px  5px 1px $ROCKETMETALLIC,
+                6px  6px 1px $ROCKETMETALLIC,
+                7px  7px 1px $ROCKETMETALLIC,
+                8px  8px 1px $ROCKETMETALLIC,
+                9px  9px 1px $ROCKETMETALLIC,
+                10px 10px 1px $ROCKETMETALLIC;
+
+    @media screen and ( max-width: $break-large ) {
+        width: 100%;
+    }
+}

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TitleComponent implements OnInit {
 
-  @Input() fz100 = false;
+  @Input() roomPage = false;
 
   constructor() {}
 

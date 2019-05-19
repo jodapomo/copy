@@ -1,6 +1,8 @@
 @import "../../../assets/css/variables.scss";
 
 .button {
+    text-decoration: none;
+    line-height: 1.7;
     height: 74px;
     position: relative;
     background: $BLACKSHADOW;
