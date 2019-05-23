@@ -4,6 +4,18 @@
 .main-title {
     animation-duration: 1s;
     animation-delay: 700ms;
+
+    @media screen and ( max-width: $break-large ) {
+        display: none;
+    }
+
+}
+
+.main-wrapper {
+    @media screen and ( max-width: $break-large ) {
+        padding-top: 15px;
+        padding-top: 15px;
+    }
 }
 
 .room {
@@ -30,6 +42,7 @@
 
     @media screen and ( max-width: $break-large ) {
         width: 100%;
+        height: calc( 100vh - 30px );
     }
 }
 
