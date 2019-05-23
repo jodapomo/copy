@@ -12,10 +12,7 @@ import { TempUser } from '../../models/temp-user.model';
 })
 export class RoomService {
 
-  apiUrl: string;
-
-  newRoom: { name: string, username: string };
-  creatingRoom: boolean;
+  private apiUrl: string;
 
   room: Room;
 
@@ -25,9 +22,6 @@ export class RoomService {
   ) {
 
     this.apiUrl = environment.apiUrl;
-    this.newRoom = { name: '', username: '' };
-
-    this.creatingRoom = false;
 
   }
 

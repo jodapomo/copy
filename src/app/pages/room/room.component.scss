@@ -60,14 +60,14 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background: $ROCKETMETALLIC;
+            background: $BLACKSHADOW;
             width: 6px;
             border-radius: 10px;
             background-clip: padding-box;
             border: 6px solid rgba(0, 0, 0, 0);
 
             &:hover {
-                background: darken($ROCKETMETALLIC, 5);
+                background: darken($BLACKSHADOW, 5);
                 background-clip: padding-box;
                 border: 6px solid rgba(0, 0, 0, 0);
             }
