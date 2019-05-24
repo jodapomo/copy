@@ -7,6 +7,7 @@ import { Home3dButtonComponent } from './home3d-button/home3d-button.component';
 import { RouterModule } from '@angular/router';
 import { DigitOnlyRoomIdDirective } from '../directives/digit-only-room-id.directive';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -14,12 +15,14 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     HomeInputButtonComponent,
     Home3dButtonComponent,
     DigitOnlyRoomIdDirective,
-    TooltipComponent
+    TooltipComponent,
+    LoaderComponent
   ],
   exports: [
     TitleComponent,
     HomeInputButtonComponent,
     Home3dButtonComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,

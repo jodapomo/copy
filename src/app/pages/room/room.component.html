@@ -11,7 +11,6 @@
         <div class="items-wrapper">
           <div class="fill"></div>
           <div class="items">
-            <!-- <div class="item">ITEM</div>
             <div class="item">ITEM</div>
             <div class="item">ITEM</div>
             <div class="item">ITEM</div>
@@ -28,7 +27,8 @@
             <div class="item">ITEM</div>
             <div class="item">ITEM</div>
             <div class="item">ITEM</div>
-            <div class="item">ITEM</div> -->
+            <div class="item">ITEM</div>
+            <div class="item">ITEM</div>
           </div>
         </div>
       </div>
@@ -37,48 +37,25 @@
       </div>
     </div>
     <div class="side">
-      <div class="info"></div>
-      <div class="users-wrapper">
-        <div class="users">
-          <!-- <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div>
-          <div class="user">USER</div> -->
+      <div class="info-wrapper">
+        <app-loader *ngIf="!room"></app-loader>
+        <div *ngIf="room" class="info">
+          <div class="name">
+            <h1>{{room.name}}{{room.name}}{{room.name}}{{room.name}}{{room.name}}</h1>
+          </div>
+          <div class="id">
+              Id.{{room.id}}
+          </div>
+          
         </div>
       </div>
-      <div class="search"></div>
+      <div class="users-wrapper">
+        <app-loader *ngIf="!room"></app-loader>
+        <div *ngIf="room" class="users">
+          <div *ngFor="let user of room.temp_users" class="user">{{user.username}}</div>
+        </div>
+      </div>
+      <div class="search-wrapper"></div>
     </div>
   </section>
 

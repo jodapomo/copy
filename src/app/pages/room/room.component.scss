@@ -1,4 +1,5 @@
 @import "../../../assets/css/variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
 
 
 .main-title {
@@ -11,7 +12,12 @@
 
 }
 
+
+
 .main-wrapper {
+    font-family: 'Nunito', sans-serif;
+    color: $ROCKETMETALLIC;
+
     @media screen and ( max-width: $break-large ) {
         padding-top: 15px;
         padding-top: 15px;
@@ -147,12 +153,46 @@
         }
     }
 
-    .info {
+    .info-wrapper {
         height: 200px;
         border-bottom: 1px solid $BLACKSHADOW;
+
+        .info {
+            .name {
+                background: rgb(237, 255, 195);
+                padding: 20px;
+                padding-bottom: 5px;
+                
+                h1 {
+                    font-weight: 700;
+                    // border-bottom: 2px solid $ROCKETMETALLIC;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    overflow-x: scroll;
+
+                    &::-webkit-scrollbar {
+                        height: 4px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: $ROCKETMETALLIC;
+                        border-radius: 5px;
+                    }
+        
+                    &::-webkit-scrollbar-thumb {
+                        background: $BLACKSHADOW;
+                        height: 4px;
+        
+                        &:hover {
+                            background: darken($BLACKSHADOW, 5);
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    .search {
+    .search-wrapper {
         min-height: 75px;
         border-top: 1px solid $BLACKSHADOW;
     }
