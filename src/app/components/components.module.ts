@@ -23,6 +23,7 @@ import { LoaderComponent } from './loader/loader.component';
     HomeInputButtonComponent,
     Home3dButtonComponent,
     LoaderComponent,
+    TooltipComponent,
   ],
   imports: [
     CommonModule,

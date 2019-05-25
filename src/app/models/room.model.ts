@@ -10,6 +10,7 @@ export class Room implements Deserializable {
     items: string[];
     createdAt: Date;
     updatedAt: Date;
+    locked: boolean;
 
 
     deserialize(input: any): this {
