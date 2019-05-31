@@ -5,11 +5,11 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './pages/home/home.module#HomeModule',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
   },
   {
     path: 'room',
-    loadChildren: './pages/room/room.module#RoomModule',
+    loadChildren: () => import('./pages/room/room.module').then(m => m.RoomModule),
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

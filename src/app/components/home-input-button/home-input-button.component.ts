@@ -28,8 +28,8 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChange
   @Output() formatError: EventEmitter<boolean> = new EventEmitter<boolean>();
   
 
-  @ViewChild('input') inputElement: ElementRef;
-  @ViewChild('form') ngForm: NgForm;
+  @ViewChild('input', { static: false }) inputElement: ElementRef;
+  @ViewChild('form', { static: true }) ngForm: NgForm;
 
   formChangesSubscription: any; 
 

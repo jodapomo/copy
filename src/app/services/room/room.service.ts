@@ -16,8 +16,8 @@ export class RoomService {
 
   room: Room;
 
-  
-  constructor( 
+
+  constructor(
     private http: HttpClient,
   ) {
 
