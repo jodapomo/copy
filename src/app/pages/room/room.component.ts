@@ -21,13 +21,21 @@ export class RoomComponent implements OnInit {
   copyIdTooltipMessage = 'Copy room Id';
   copyUrlTooltipMessage = 'Copy room url';
 
+
+  searchTerm: string;
+  searching: boolean;
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
     private roomService: RoomService,
     private clipboardService: ClipboardService,
-  ) { }
+  ) {
+    this.searchTerm = '';
+    this.searching = false;
+  }
 
   ngOnInit() {
 
@@ -48,6 +56,14 @@ export class RoomComponent implements OnInit {
       console.log(this.room);
     });
 
+  }
+
+  search() {
+    console.log(this.searchTerm);
+  }
+
+  clear() {
+    this.searchTerm = '';
   }
 
 

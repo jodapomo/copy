@@ -101,8 +101,32 @@
           <div *ngFor="let user of room.temp_users" class="user">{{user.username}}</div>
         </div>
       </div>
-      <div class="search-wrapper"></div>
+      <div class="search-wrapper">
+
+        <span class="icon-wrapper search-icon">
+          <i class="fas fa-search"></i>
+        </span>
+
+        <div class="input-wrapper">
+          <input
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
+            (keyup)="search()"
+            type="text"
+            placeholder="Search"
+          >
+        </div>
+
+        <span *ngIf="searchTerm.length > 0 && !loading" (click)="clear()" class="icon-wrapper">
+          <i class="fas fa-times-circle input-button erase"></i>
+        </span>
+
+        <span *ngIf="searching" class="icon-wrapper">
+          <i class="fas fa-sync-alt input-button spin"></i> 
+        </span>
+
+      </div>
     </div>
   </section>
-
+ 
 </div>
