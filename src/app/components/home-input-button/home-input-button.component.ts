@@ -24,14 +24,14 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChange
   @Output() send: EventEmitter<number | string> = new EventEmitter<number | string>();
 
   @Output() clean: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
+
   @Output() formatError: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
+
 
   @ViewChild('input', { static: false }) inputElement: ElementRef;
   @ViewChild('form', { static: true }) ngForm: NgForm;
 
-  formChangesSubscription: any; 
+  formChangesSubscription: any;
 
   value: string;
 
@@ -54,15 +54,15 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChange
     this.value = '';
 
   }
-  
+
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if( changes.presetedValue && 
-        changes.presetedValue.currentValue && 
-        String( changes.presetedValue.currentValue ).length > 0 ) 
+    if ( changes.presetedValue &&
+        changes.presetedValue.currentValue &&
+        String( changes.presetedValue.currentValue ).length > 0 )
     {
       this.value = String( this.presetedValue );
     }
@@ -99,13 +99,13 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChange
     if ( this.value.length > 0 && this.ngForm.valid ) {
 
       this.send.emit( this.value );
-      
+
     }
 
   }
 
   onTyping() {
-    
+
     this.typing.emit( this.value );
 
     if ( (this.ngForm.valid || this.ngForm.pristine) ) {
@@ -117,11 +117,11 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChange
       this.formatError.emit( true );
 
     }
-    
+
   }
 
   back() {
-    
+
     if (window.history.length > 1) {
       this.location.back();
     } else {

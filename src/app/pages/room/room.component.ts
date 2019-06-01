@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RoomService } from '../../services/room/room.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Room } from '../../models/room.model';
@@ -24,6 +24,7 @@ export class RoomComponent implements OnInit {
 
   searchTerm: string;
   searching: boolean;
+  @ViewChild('input', { static: false }) inputSearchElement: ElementRef;
 
 
   constructor(
@@ -62,7 +63,11 @@ export class RoomComponent implements OnInit {
     console.log(this.searchTerm);
   }
 
-  clear() {
+  focusSearch() {
+    this.inputSearchElement.nativeElement.focus();
+  }
+
+  clearSearch() {
     this.searchTerm = '';
   }
 

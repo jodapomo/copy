@@ -294,6 +294,7 @@
         display: flex;
 
         .icon-wrapper.search-icon {
+            cursor: text;
             color: lighten($ROCKETMETALLIC, 35%);
             height: 100%;
             width: 50px;
@@ -312,7 +313,7 @@
                 padding-right: 50px;
                 border: none;
                 outline: none;            
-                font-size: 30px;
+                font-size: 20px;
                 height: 100%;
                 width: 100%;
     
@@ -332,13 +333,6 @@
                     }
                 }
     
-                &:focus ~ .icon-wrapper {
-                    color: rgb(209, 50, 50);
-                }
-            }
-
-            & ~ .icon-wrapper {
-                color: rgb(209, 50, 50);
             }
         }
 

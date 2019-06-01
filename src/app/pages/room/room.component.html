@@ -103,12 +103,13 @@
       </div>
       <div class="search-wrapper">
 
-        <span class="icon-wrapper search-icon">
+        <span (click)="focusSearch()" class="icon-wrapper search-icon">
           <i class="fas fa-search"></i>
         </span>
 
         <div class="input-wrapper">
           <input
+            #input
             [(ngModel)]="searchTerm"
             name="searchTerm"
             (keyup)="search()"
@@ -117,7 +118,7 @@
           >
         </div>
 
-        <span *ngIf="searchTerm.length > 0 && !loading" (click)="clear()" class="icon-wrapper">
+        <span *ngIf="searchTerm.length > 0 && !loading" (click)="clearSearch()" class="icon-wrapper">
           <i class="fas fa-times-circle input-button erase"></i>
         </span>
 
