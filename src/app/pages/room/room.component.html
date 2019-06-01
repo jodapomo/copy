@@ -37,6 +37,7 @@
       </div>
     </div>
     <div class="side">
+
       <div class="info-wrapper">
         <app-loader *ngIf="!room"></app-loader>
         <div *ngIf="room" class="info">
@@ -95,12 +96,31 @@
 
         </div>
       </div>
+
       <div class="users-wrapper">
         <app-loader *ngIf="!room"></app-loader>
         <div *ngIf="room" class="users">
-          <div *ngFor="let user of room.temp_users" class="user">{{user.username}}</div>
+
+          <div *ngFor="let user of room.temp_users" class="user">
+
+            <div class="icon">
+              <i class="fas fa-user"></i>
+            </div>
+
+            <div class="username">
+              {{user.username}}
+            </div>
+
+            <div class="status">
+              <div class="online"></div>
+              <div class="last-login"></div>
+            </div>
+
+          </div>
+
         </div>
       </div>
+
       <div class="search-wrapper">
 
         <span (click)="focusSearch()" class="icon-wrapper search-icon">

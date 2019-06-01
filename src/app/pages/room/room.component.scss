@@ -145,11 +145,32 @@
             .user {
                 margin-right: 10px;
                 margin-left: 10px;
-                border-radius: 5px;
-                height: 50px;
-                box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 1px;
                 margin-bottom: 10px;
-                text-align: center;
+                border-radius: 5px;
+                box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 1px;
+                padding: 10px;
+                display: flex;
+
+                .icon {
+                    width: 30px;
+                    background: rgb(95, 41, 221);
+                }
+
+                .username {
+                    flex: 1 1 0;
+                }
+
+                .status {
+                    width: 30px;
+                    background: rgb(97, 97, 97);
+
+                    .online {
+                        border-radius: 100%;
+                        width: 8px;
+                        height: 8px;
+                        background: rgb(83, 255, 48);
+                    }
+                }
             }
         }
     }
