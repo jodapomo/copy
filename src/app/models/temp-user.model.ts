@@ -5,7 +5,8 @@ export class TempUser implements Deserializable {
     _id: string;
     username: string;
     online: boolean;
-    last_login: Date;
+    admin: boolean;
+    lastLogin: Date;
     createdAt: Date;
     updatedAt: Date;
 

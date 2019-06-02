@@ -71,7 +71,7 @@
             <app-tooltip class="lock" [ngClass]="{'clickable': !room.locked}" tooltip-text="Lock room with a password" tooltip-direction="left" tooltip-effect="zoom" [tooltip-display]="!room.locked">
               <div >
                 <i *ngIf="!room.locked" class="fas fa-unlock"></i>
-                <i *ngIf="room.locked" class="fas fa-lock"></i>
+                <i *ngIf="room.locked" [title]="room.name  + ' is locked with a password'" class="fas fa-lock"></i>
               </div>
             </app-tooltip>
 
@@ -101,19 +101,23 @@
         <app-loader *ngIf="!room"></app-loader>
         <div *ngIf="room" class="users">
 
-          <div *ngFor="let user of room.temp_users" class="user">
+          <div *ngFor="let user of room.temp_users" [ngClass]="{'offline': !user.online}" class="user">
 
             <div class="icon">
-              <i class="fas fa-user"></i>
+                <i *ngIf="!user.admin" class="fas fa-user"></i>
+              <!-- <i *ngIf="!user.admin" class="fas fa-user-tie"></i> IF user._id === _userService.user._id -->
+              <i *ngIf="user.admin" class="fas fa-crown"></i>
             </div>
 
-            <div class="username">
-              {{user.username}}
+            <div [title]="user.username" class="username">
+              <span>{{user.username}}</span>
             </div>
 
             <div class="status">
-              <div class="online"></div>
-              <div class="last-login"></div>
+              <div *ngIf="user.online" class="online"></div>
+              <div *ngIf="!user.online" class="last-login">
+                4 h
+              </div>
             </div>
 
           </div>

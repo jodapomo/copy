@@ -126,7 +126,7 @@
             overflow-x: hidden;
             overflow-y: scroll;
             padding-left: 6px;
-            padding-top: 6px;
+            padding-top: 10px;
             padding-bottom: 6px;
 
             &::-webkit-scrollbar {
@@ -143,34 +143,62 @@
             }
 
             .user {
-                margin-right: 10px;
-                margin-left: 10px;
+                margin-right: 20px;
+                margin-left: 20px;
                 margin-bottom: 10px;
                 border-radius: 5px;
                 box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 1px;
-                padding: 10px;
+                height: 50px;
+                overflow: hidden;
                 display: flex;
 
                 .icon {
-                    width: 30px;
-                    background: rgb(95, 41, 221);
+                    width: 60px;
+                    font-size: 20px;
+                    color: $BLACKSHADOW;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .username {
                     flex: 1 1 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+
+                    span {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                 }
 
                 .status {
-                    width: 30px;
-                    background: rgb(97, 97, 97);
+                    width: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
                     .online {
                         border-radius: 100%;
                         width: 8px;
                         height: 8px;
-                        background: rgb(83, 255, 48);
+                        background: rgb(185, 255, 176);
+                    }
+
+                    .last-login {
+                        font-size: 12px;
                     }
                 }
+
+                &.offline {
+                    background: rgb(250, 250, 250);
+                    & > div{
+                        opacity: .4;
+                    }
+                }
+
             }
         }
     }
