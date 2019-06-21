@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeService } from '../shared/Services/home.service';
-import { EnterRoomService } from '../shared/Services/enter-room.service';
+import { HomeService } from '../shared/services/home.service';
+import { EnterRoomService } from '../shared/services/enter-room.service';
 
 @Component({
   selector: 'app-room-id',

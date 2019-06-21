@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EnterRoomService } from '../shared/Services/enter-room.service';
-import { NewRoomService } from '../shared/Services/new-room.service';
+import { EnterRoomService } from '../shared/services/enter-room.service';
+import { NewRoomService } from '../shared/services/new-room.service';
 import { Observable } from 'rxjs';
 
 @Component({

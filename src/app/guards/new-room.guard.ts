@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { NewRoomService } from '../pages/home/shared/Services/new-room.service';
+import { NewRoomService } from '../pages/home/shared/services/new-room.service';
 
 @Injectable({
   providedIn: 'root'

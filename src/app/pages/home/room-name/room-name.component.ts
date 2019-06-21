@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NewRoomService } from '../shared/Services/new-room.service';
+import { NewRoomService } from '../shared/services/new-room.service';
 
 @Component({
   selector: 'app-room-name',
