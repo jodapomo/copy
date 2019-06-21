@@ -25,13 +25,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                     if ( error.error.ok === false ) {
                         errorMessage = error.error.message;
                     } else {
-                        errorMessage = `Something bad happened; please try again later (server).`
+                        errorMessage = `Something bad happened; please try again later (server).`;
                     }
                 }
 
                 return throwError(errorMessage);
 
             })
-        )
+        );
   }
 }

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { Room } from '../../models/room.model';
+import { Room } from '../../../../models/room.model';
 import { tap, map } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { TempUser } from '../../models/temp-user.model';
+import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({

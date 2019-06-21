@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { Room } from '../../models/room.model';
-import { map, tap } from 'rxjs/operators';
-import { LoginService } from '../login.service';
+import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
+import { LoginService } from '../../../../services/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -34,16 +33,6 @@ export class NewRoomService {
       .pipe(
         tap( _ => this.clearRoom() )
       );
-
-    // return this.http.post<Room>( url, this.room )
-    //   .pipe( 
-    //     map( (res: any) =>  new Room().deserialize( res.room ) ),
-    //     tap( (room: Room) => {
-
-    //       this.clearRoom();
-
-    //   }),
-    // );
 
   }
 

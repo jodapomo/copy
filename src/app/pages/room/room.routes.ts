@@ -9,7 +9,8 @@ const routes: Routes = [
     redirectTo: '/',
     pathMatch: 'full',
   },
-  { 
+
+  {
     path: ':id',
     component: RoomComponent
   },

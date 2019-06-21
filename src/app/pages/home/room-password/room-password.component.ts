@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EnterRoomService } from '../../../services/home/enter-room.service';
+import { EnterRoomService } from '../shared/Services/enter-room.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NewRoomService } from '../../../services/home/new-room.service';
+import { NewRoomService } from '../shared/Services/new-room.service';
 
 @Component({
   selector: 'app-room-password',
@@ -94,7 +94,7 @@ export class RoomPasswordComponent implements OnInit {
 
   onFormatError( error: boolean ) {
 
-    if( error ) {
+    if ( error ) {
 
       this.error = true;
       this.errorMessage = 'Invalid format. Only numbers and letters are allowed - e.g. "Room 1".';

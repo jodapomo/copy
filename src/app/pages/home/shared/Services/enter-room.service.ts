@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../../../services/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class EnterRoomService {
         tap( _ => this.clearRoom() )
       );
   }
-  
+
 
   checkCredentials() {
 
@@ -87,7 +87,7 @@ export class EnterRoomService {
   isRoomLoggable(): boolean {
 
     if ( this.room.locked ) {
-      
+
       return this.room.id && this.room.id > 0 && this.passwordChecked;
 
     } else {

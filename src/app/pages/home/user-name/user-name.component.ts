@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RoomService } from 'src/app/services/room/room.service';
-import { EnterRoomService } from '../../../services/home/enter-room.service';
-import { NewRoomService } from '../../../services/home/new-room.service';
+import { EnterRoomService } from '../shared/Services/enter-room.service';
+import { NewRoomService } from '../shared/Services/new-room.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -66,7 +65,7 @@ export class UserNameComponent implements OnInit {
     this.enterRoomService.setRoomUsername( username );
 
     return this.enterRoomService.login();
-      
+
 
   }
 
@@ -76,13 +75,12 @@ export class UserNameComponent implements OnInit {
     this.newRoomService.setRoomUsername( username );
 
     return this.newRoomService.createRoomAndLogin();
-      
 
   }
 
   onFormatError( error: boolean ) {
 
-    if( error ) {
+    if ( error ) {
 
       this.error = true;
       this.errorMessage = 'Invalid format. Only numbers and letters are allowed - e.g. "John Doe".';

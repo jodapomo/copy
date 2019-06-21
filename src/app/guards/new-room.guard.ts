@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { NewRoomService } from '../services/home/new-room.service';
+import { NewRoomService } from '../pages/home/shared/Services/new-room.service';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +35,5 @@ export class NewRoomGuard implements CanActivate {
     this.router.navigate(['/']);
     return false;
   }
-  
+
 }

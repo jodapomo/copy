@@ -11,7 +11,11 @@ const routes: Routes = [
     path: 'room',
     loadChildren: () => import('./pages/room/room.module').then(m => m.RoomModule),
   },
-  { path: '**', pathMatch: 'full', redirectTo: '' }
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({

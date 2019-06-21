@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { RoomService } from '../../services/room/room.service';
+import { RoomService } from './shared/services/room.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Room } from '../../models/room.model';
-import { switchMap, map, tap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { ClipboardService } from 'ngx-clipboard';
 import { Location } from '@angular/common';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NewRoomService } from '../../../services/home/new-room.service';
+import { NewRoomService } from '../shared/Services/new-room.service';
 
 @Component({
   selector: 'app-room-name',
@@ -14,7 +14,7 @@ export class RoomNameComponent implements OnInit {
   errorMessage: string;
 
   presetedValue: string;
-  
+
   locked: boolean;
 
   constructor(
@@ -31,12 +31,13 @@ export class RoomNameComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     if ( this.newRoomService.isRoomNameSet() ) {
       this.presetedValue = this.newRoomService.getRoomName();
     }
 
   }
+
   onSend( roomName: string ) {
 
     this.newRoomService.setRoomName( roomName );
@@ -52,7 +53,7 @@ export class RoomNameComponent implements OnInit {
       this.router.navigate(['/new-room/username']);
 
     }
-    
+
   }
 
   onFormatError( error: boolean ) {
@@ -71,7 +72,7 @@ export class RoomNameComponent implements OnInit {
   }
 
   onTyping( value: string ) {
-    
+
     if ( value.length === 0 ) {
       this.newRoomService.clearRoom();
     }

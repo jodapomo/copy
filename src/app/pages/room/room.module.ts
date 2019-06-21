@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RoomRoutingModule } from './room.routes';
 import { RoomComponent } from './room.component';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FormsModule } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ComponentsModule,
+    SharedModule,
     ClipboardModule,
     RoomRoutingModule,
   ]

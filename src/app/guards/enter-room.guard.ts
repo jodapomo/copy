@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { EnterRoomService } from '../services/home/enter-room.service';
+import { EnterRoomService } from '../pages/home/shared/Services/enter-room.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnterRoomGuard implements CanActivate {
-  
-  constructor( 
+
+  constructor(
     private enterRoomService: EnterRoomService,
     private router: Router,
   ) {}
@@ -35,5 +35,5 @@ export class EnterRoomGuard implements CanActivate {
     this.router.navigate(['/']);
     return false;
   }
-  
+
 }

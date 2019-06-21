@@ -2,6 +2,7 @@ import { Deserializable } from './deserializable.model';
 
 export class TempUser implements Deserializable {
 
+// tslint:disable-next-line: variable-name
     _id: string;
     username: string;
     online: boolean;

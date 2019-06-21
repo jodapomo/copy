@@ -44,7 +44,9 @@ export class DigitOnlyRoomIdDirective {
     }
     // Ensure that it is a number and stop the keypress
     if (
+      // tslint:disable-next-line: deprecation
       (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&
+      // tslint:disable-next-line: deprecation
       (e.keyCode < 96 || e.keyCode > 105)
     ) {
       e.preventDefault();

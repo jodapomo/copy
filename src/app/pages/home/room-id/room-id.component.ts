@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeService } from '../../../services/home/home.service';
-import { EnterRoomService } from '../../../services/home/enter-room.service';
+import { HomeService } from '../shared/Services/home.service';
+import { EnterRoomService } from '../shared/Services/enter-room.service';
 
 @Component({
   selector: 'app-room-id',
@@ -31,7 +31,7 @@ export class RoomIdComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     if ( this.enterRoomService.isRoomValid() ) {
       this.presetedValue = this.enterRoomService.getRoomId();
     }
@@ -47,7 +47,7 @@ export class RoomIdComponent implements OnInit {
 
         this.error = false;
         this.loading = false;
-        
+
         this.enterRoomService.setRoomId( roomId );
 
         if ( locked ) {
@@ -56,10 +56,10 @@ export class RoomIdComponent implements OnInit {
           this.router.navigate([ '/enter-room/password' ]);
 
         } else {
-          
+
           this.enterRoomService.setRoomLocked( false );
           this.router.navigate([ '/enter-room/username' ]);
-          
+
         }
 
       }, err => {
@@ -88,7 +88,7 @@ export class RoomIdComponent implements OnInit {
   }
 
   onTyping( value: string ) {
-    
+
     if ( value.length === 0 ) {
       this.enterRoomService.clearRoom();
     }
