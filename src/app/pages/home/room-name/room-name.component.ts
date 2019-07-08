@@ -26,7 +26,7 @@ export class RoomNameComponent implements OnInit {
     this.error = false;
     this.locked = false;
 
-    this.errorMessage = 'An error occurred with the name selection.'
+    this.errorMessage = 'An error occurred with the name selection.';
 
   }
 
@@ -58,7 +58,7 @@ export class RoomNameComponent implements OnInit {
 
   onFormatError( error: boolean ) {
 
-    if( error ) {
+    if ( error ) {
 
       this.error = true;
       this.errorMessage = 'Invalid format. Only numbers and letters are allowed - e.g. "Room 1".';

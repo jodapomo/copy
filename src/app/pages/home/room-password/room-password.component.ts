@@ -28,7 +28,7 @@ export class RoomPasswordComponent implements OnInit {
     this.loading = false;
     this.error = false;
 
-    this.errorMessage = 'An error occurred with the password.'
+    this.errorMessage = 'An error occurred with the password.';
 
   }
 

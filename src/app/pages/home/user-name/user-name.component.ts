@@ -27,7 +27,7 @@ export class UserNameComponent implements OnInit {
     this.loading = false;
     this.error = false;
 
-    this.errorMessage = 'An error occurred with the username selection.'
+    this.errorMessage = 'An error occurred with the username selection.';
 
   }
 
@@ -54,7 +54,18 @@ export class UserNameComponent implements OnInit {
     }
 
 
-    roomIdObservable.subscribe( roomId => this.router.navigate([ '/room', roomId ]) );
+    roomIdObservable
+      .subscribe( roomId => {
+
+        this.router.navigate([ '/room', roomId ]);
+
+      }, err => {
+
+        this.error = true;
+        this.errorMessage = err;
+        this.loading = false;
+
+      });
 
 
   }

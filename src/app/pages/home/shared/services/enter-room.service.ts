@@ -16,7 +16,7 @@ export class EnterRoomService {
     locked: boolean,
     password: string,
     username: string,
-  }
+  };
 
   private passwordChecked: boolean;
 

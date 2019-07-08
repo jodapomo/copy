@@ -74,7 +74,7 @@ export class RoomIdComponent implements OnInit {
 
   onFormatError( error: boolean ) {
 
-    if( error ) {
+    if ( error ) {
 
       this.error = true;
       this.errorMessage = 'Format invalid. Only numbers are allowed.';

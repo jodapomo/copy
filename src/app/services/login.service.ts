@@ -24,7 +24,7 @@ export class LoginService {
 
     return this.http.post( url, loginRoom )
       .pipe(
-        map( (res: any) => res.roomId )
+        map( (res: any) => res.roomId ),
       );
 
   }
