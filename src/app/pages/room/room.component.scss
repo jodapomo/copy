@@ -70,7 +70,8 @@
             overflow-x: hidden;
             overflow-y: scroll;
             position: absolute;
-            padding-left: 6px;
+            padding-left: 12px;
+            padding-right: 6px;
             padding-top: 6px;
 
             &::-webkit-scrollbar {
@@ -92,16 +93,6 @@
                 flex: 1 1 auto;
             }
 
-            .items {
-
-
-                .item {
-                    height: 50px;
-                    border: 1px solid #000;
-                    margin-bottom: 10px;
-                    text-align: center;
-                }
-            }
         }
     }
 

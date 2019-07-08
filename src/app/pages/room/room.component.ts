@@ -15,6 +15,7 @@ export class RoomComponent implements OnInit {
 
   id: number;
   room: Room;
+  items: any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class RoomComponent implements OnInit {
       )
     ).subscribe( room => {
       this.room = room;
+      this.items = room.items;
       console.log(this.room);
     });
 
