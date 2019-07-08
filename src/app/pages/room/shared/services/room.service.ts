@@ -26,7 +26,7 @@ export class RoomService {
 
   getRooms() {
 
-    const url = `${ this.apiUrl }/rooms`
+    const url = `${ this.apiUrl }/rooms`;
 
     return this.http.get( url );
 
@@ -34,7 +34,7 @@ export class RoomService {
 
   getRoomById( id: number ) {
 
-    const url = `${ this.apiUrl }/rooms/${ id }`
+    const url = `${ this.apiUrl }/rooms/${ id }`;
 
     return this.http.get( url )
       .pipe(

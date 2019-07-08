@@ -1,0 +1,25 @@
+<div class="search">
+  <span (click)="focusSearch()" class="icon-wrapper search-icon">
+      <i class="fas fa-search"></i>
+    </span>
+  
+  <div class="input-wrapper">
+    <input
+      #input
+      [(ngModel)]="searchTerm"
+      name="searchTerm"
+      (keyup)="search()"
+      type="text"
+      placeholder="Search"
+      autocomplete="off"
+    >
+  </div>
+  
+  <span *ngIf="searchTerm.length > 0 && !loading" (click)="clearSearch()" class="icon-wrapper">
+    <i class="fas fa-times-circle input-button erase"></i>
+  </span>
+  
+  <span *ngIf="searching" class="icon-wrapper">
+    <i class="fas fa-sync-alt input-button spin"></i> 
+  </span>
+</div>

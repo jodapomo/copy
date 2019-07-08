@@ -3,10 +3,11 @@ import { TempUser } from './temp-user.model';
 
 export class Room implements Deserializable {
 
+// tslint:disable-next-line: variable-name
     _id: string;
     id: number;
     name: string;
-    temp_users: TempUser[];
+    tempUsers: TempUser[];
     items: string[];
     createdAt: Date;
     updatedAt: Date;
@@ -17,7 +18,7 @@ export class Room implements Deserializable {
 
         Object.assign(this, input);
 
-        this.temp_users = input.temp_users.map( tempUser => new TempUser().deserialize(tempUser));
+        this.tempUsers = input.tempUsers.map( tempUser => new TempUser().deserialize(tempUser));
 
         return this;
     }

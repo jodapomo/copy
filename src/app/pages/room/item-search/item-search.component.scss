@@ -1,0 +1,72 @@
+@import "../../../../assets/css/variables.scss";
+
+.search {
+    display: flex;
+    height: 100%;
+
+    .icon-wrapper.search-icon {
+        cursor: text;
+        color: lighten($ROCKETMETALLIC, 35%);
+        height: 100%;
+        width: 50px;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .input-wrapper {
+        height: 100%;
+        flex: 1 1 0;
+        input {
+            color: $ROCKETMETALLIC;
+            padding: 5px 0px;
+            padding-right: 50px;
+            border: none;
+            outline: none;            
+            font-size: 20px;
+            height: 100%;
+            width: 100%;
+    
+            &:disabled {
+                background: #fff;
+            }
+        
+            &::placeholder {
+                color: lighten($ROCKETMETALLIC, 20%);
+            }
+        
+            &:focus {
+                outline: none;
+        
+                &::placeholder {
+                    color: lighten($ROCKETMETALLIC, 10%);
+                }
+            }
+    
+        }
+    }
+    
+    
+    .input-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5%;
+        font-size: 1.5rem;
+        color: lighten($ROCKETMETALLIC, 20%);
+        display: block;
+    
+        &.erase {
+            cursor: pointer;
+            &:hover {
+                color: $ROCKETMETALLIC;
+            }
+        }
+        &.spin {
+            animation: spin 2s infinite linear;
+            color: $ROCKETMETALLIC;
+        }
+    
+    }
+}

@@ -1,0 +1,128 @@
+@import "../../../../assets/css/variables.scss";
+
+.info {
+    .name {
+        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        
+        h1 {
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            overflow-x: scroll;
+
+            &::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: $ROCKETMETALLIC;
+                border-radius: 5px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $BLACKSHADOW;
+                height: 4px;
+                border-radius: 5px;
+
+                &:hover {
+                    background: darken($BLACKSHADOW, 5%);
+                }
+            }
+        }
+    }
+
+    .id-lock {
+        padding-right: 20px;
+        padding-left: 20px;
+        display: flex;
+        margin-bottom: 10px;
+
+        .id {
+            flex: 1 1 0;
+            display: flex;
+
+            .copyable {
+                cursor: pointer;
+                display: inline-block;
+            }
+
+            span {
+                color: lighten($ROCKETMETALLIC,5%);
+                font-size: 20px;
+                margin-left: 5px;
+                display: inline-block;
+
+                &.copy-url {
+                    position: relative;
+                    top: 6px;
+                }
+            }
+
+            h4 {
+                display: inline-block;
+                font-size: 30px;
+                font-weight: 700;
+                margin: 0;
+            }
+        }
+
+        .lock {
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            
+            &.clickable {
+                cursor: pointer;
+                border-radius: 5px;
+                transition: all 200ms ease-in-out;
+
+                &:hover {
+                    box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 1px;
+                }
+
+                &:active {
+                    box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 0px;
+                }
+            }
+        }
+
+    }
+
+    .menu {
+        padding-right: 20px;
+        padding-left: 20px;
+        display: flex;
+        justify-content: space-evenly;
+
+        .button {
+            cursor: pointer;
+            flex: 1;
+            height: 40px;
+            margin: 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border-radius: 5px;
+            transition: all 100ms linear;
+
+            span {
+                font-size: 10px;
+                font-weight: 700;
+            }
+
+            &:hover {
+                box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 1px;
+            }
+
+            &:active {
+                box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 0px;
+            }
+        }
+    }
+}

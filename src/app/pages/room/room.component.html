@@ -40,119 +40,19 @@
 
       <div class="info-wrapper">
         <app-loader *ngIf="!room"></app-loader>
-        <div *ngIf="room" class="info">
-          <div class="name">
-            <h1>{{room.name}}</h1>
-          </div>
-
-          <div class="id-lock">
-            <div class="id">
-
-              <app-tooltip [tooltip-text]="copyIdTooltipMessage" tooltip-direction="bottom" tooltip-effect="zoom">
-                
-                <div (click)="copyRoomId()" [ngClass]="{'tada': animateId}" class="animated copyable">
-                  <span>Id. </span>
-                  <h4>{{room.id}}</h4>
-                  <span class="copy-id">
-                    <i class="far fa-copy"></i>
-                  </span>
-                </div>
-                
-              </app-tooltip>
-              
-              <app-tooltip [tooltip-text]="copyUrlTooltipMessage" tooltip-direction="bottom" tooltip-effect="zoom">
-                <span (click)="copyRoomUrl()" [ngClass]="{'tada': animateUrl}" class="copy-url animated copyable">
-                    <i class="fas fa-link"></i>
-                </span>
-              </app-tooltip>
-            </div>
-
-
-            <app-tooltip class="lock" [ngClass]="{'clickable': !room.locked}" tooltip-text="Lock room with a password" tooltip-direction="left" tooltip-effect="zoom" [tooltip-display]="!room.locked">
-              <div >
-                <i *ngIf="!room.locked" class="fas fa-unlock"></i>
-                <i *ngIf="room.locked" [title]="room.name  + ' is locked with a password'" class="fas fa-lock"></i>
-              </div>
-            </app-tooltip>
-
-
-
-          </div>
-
-          <div class="menu">
-            <div class="button home">
-              <i class="icon fas fa-home"></i>
-              <span>Go home!</span>
-            </div>
-            <div class="button delete-room">
-              <i class="icon far fa-trash-alt"></i>
-              <span>Delete room</span>
-            </div>
-            <div class="button sign-out">
-              <i class="icon fas fa-sign-out-alt"></i>
-              <span>Sign out</span>
-            </div>
-          </div>
-
-        </div>
+        <app-room-info *ngIf="room" [room]="room"></app-room-info>
       </div>
 
       <div class="users-wrapper">
         <app-loader *ngIf="!room"></app-loader>
-        <div *ngIf="room" class="users">
-
-          <div *ngFor="let user of room.temp_users" [ngClass]="{'offline': !user.online}" class="user">
-
-            <div class="icon">
-                <i *ngIf="!user.admin" class="fas fa-user"></i>
-              <!-- <i *ngIf="!user.admin" class="fas fa-user-tie"></i> IF user._id === _userService.user._id -->
-              <i *ngIf="user.admin" class="fas fa-crown"></i>
-            </div>
-
-            <div [title]="user.username" class="username">
-              <span>{{user.username}}</span>
-            </div>
-
-            <div class="status">
-              <div *ngIf="user.online" class="online"></div>
-              <div *ngIf="!user.online" class="last-login">
-                4 h
-              </div>
-            </div>
-
-          </div>
-
-        </div>
+        <app-room-users *ngIf="room" [users]="room.tempUsers"></app-room-users>
       </div>
 
       <div class="search-wrapper">
-
-        <span (click)="focusSearch()" class="icon-wrapper search-icon">
-          <i class="fas fa-search"></i>
-        </span>
-
-        <div class="input-wrapper">
-          <input
-            #input
-            [(ngModel)]="searchTerm"
-            name="searchTerm"
-            (keyup)="search()"
-            type="text"
-            placeholder="Search"
-            autocomplete="off"
-          >
-        </div>
-
-        <span *ngIf="searchTerm.length > 0 && !loading" (click)="clearSearch()" class="icon-wrapper">
-          <i class="fas fa-times-circle input-button erase"></i>
-        </span>
-
-        <span *ngIf="searching" class="icon-wrapper">
-          <i class="fas fa-sync-alt input-button spin"></i> 
-        </span>
-
+        <app-item-search></app-item-search>
       </div>
     </div>
   </section>
  
 </div>
+ 
