@@ -1,17 +1,17 @@
 
 <div class="items-wrapper" #itemsWrapper >
-    <!-- [scrollTop]="itemsWrapper.scrollHeight" -->
+
   <div class="fill">
     <app-loader *ngIf="!items"></app-loader>
   </div>
 
   <div *ngIf="items" class="items">
 
-    <div #getMoreItemsLoader *ngIf="items.length >= limit" class="top">
+    <div #getMoreItemsLoader *ngIf="items.length >= limit && thereMoreItems" class="top">
         <app-loader></app-loader>
     </div>
 
-    <app-item *ngFor="let item of items" [item]="item"></app-item>
+    <app-item #itemRef *ngFor="let item of items" [item]="item"></app-item>
 
   </div>
 

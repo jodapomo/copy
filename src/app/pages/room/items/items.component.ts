@@ -1,5 +1,18 @@
 // tslint:disable-next-line: max-line-length
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  ViewChildren,
+  QueryList
+} from '@angular/core';
+
 import { RoomService } from '../shared/services/room.service';
 
 @Component({
@@ -7,15 +20,21 @@ import { RoomService } from '../shared/services/room.service';
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
-export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
+export class ItemsComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit  {
 
   @Input() items: any[];
+  @Input() roomId: number;
 
   @ViewChild('itemsWrapper', { static: false }) itemsWrapperElement: ElementRef;
   @ViewChild('getMoreItemsLoader', { static: false }) getMoreItemsLoaderElement: ElementRef;
 
+  @ViewChildren('itemRef', {read: ElementRef}) itemsElement: QueryList<ElementRef>;
+
+  latestItemOnView: ElementRef;
+
   page = 1;
   limit: number;
+  thereMoreItems =  false;
 
   private observer: IntersectionObserver;
 
@@ -34,6 +53,10 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
           changes.items.currentValue
     ) {
 
+      if ( this.items.length === this.limit ) {
+        this.thereMoreItems = true;
+      }
+
       setTimeout(() => {
 
         this.scrollItemsToBottom();
@@ -41,9 +64,44 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
         if ( this.items.length === this.limit ) {
           this.setInfiniteScroll();
         }
+
       }, 0);
+
     }
 
+  }
+
+  ngAfterViewInit(): void {
+
+
+    this.itemsElement.changes.subscribe( (r) => {
+
+      console.log('CAMBIO');
+      this.latestItemOnView = this.itemsElement.first;
+      console.log(this.itemsElement.first);
+
+    });
+
+  }
+
+
+
+  getMoreItems() {
+    this.page++;
+    console.log('PAGE:', this.page);
+    this.roomService.getItemsByRoomId( this.roomId, this.page)
+      .subscribe( (items: any[]) => {
+
+        this.thereMoreItems = false;
+
+        if ( items.length < this.limit ) {
+
+          this.thereMoreItems = false;
+          this.observer.disconnect();
+        }
+
+        return this.items.unshift(...items);
+      });
   }
 
   addItem() {
@@ -65,6 +123,12 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
     this.itemsWrapperElement.nativeElement.scrollTop = this.itemsWrapperElement.nativeElement.scrollHeight;
   }
 
+  scrollToLatestItemOnView() {
+    console.log('SCROLL');
+
+    this.latestItemOnView.nativeElement.scrollIntoView();
+  }
+
   setInfiniteScroll() {
 
     const options = {
@@ -76,7 +140,7 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
       if ( entry.isIntersecting ) {
         console.log('GET MORE ITEMS');
-        this.addItem();
+        this.getMoreItems();
       }
 
     }, options);
