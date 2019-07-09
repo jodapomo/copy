@@ -1,0 +1,11 @@
+@import "../../../../../assets/css/variables.scss";
+
+.item {
+    min-height: 50px;
+    box-shadow: rgba(37, 38, 39, 0.274) 0px 1px 3px 1px;
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+}

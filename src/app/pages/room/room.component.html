@@ -8,16 +8,9 @@
   <section class="room">
 
     <div class="main">
-      <div class="items-outer-wrapper">
-        <div class="items-wrapper">
-          <div class="fill">
-            <app-loader *ngIf="!items"></app-loader>
-          </div>
-          <div *ngIf="items" class="items">
-            <app-item *ngFor="let item of room.items" [item]="item"></app-item>
-          </div>
-        </div>
-      </div>
+      
+
+      <app-items [items]="items" class="items-outer-wrapper"></app-items>
 
       <div class="input">
       </div>
@@ -26,7 +19,7 @@
 
     <div class="side">
 
-      <div class="info-wrapper">
+      <div class="info-wrapper"> 
         <app-loader *ngIf="!room"></app-loader>
         <app-room-info *ngIf="room" [room]="room"></app-room-info>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { RoomService } from './shared/services/room.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Room } from '../../models/room.model';
@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.scss']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit  {
 
   id: number;
   room: Room;
@@ -25,9 +25,7 @@ export class RoomComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.loadRoom();
-
   }
 
   loadRoom() {
@@ -39,8 +37,9 @@ export class RoomComponent implements OnInit {
       )
     ).subscribe( room => {
       this.room = room;
-      this.items = room.items;
+      this.items = room.items.slice().reverse();
       console.log(this.room);
+      console.log(this.items);
     });
 
   }

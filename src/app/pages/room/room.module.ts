@@ -10,7 +10,8 @@ import { RelativeTimePipe } from './shared/pipes/relative-time.pipe';
 import { RoomInfoComponent } from './room-info/room-info.component';
 import { RoomUsersComponent } from './room-users/room-users.component';
 import { ItemSearchComponent } from './item-search/item-search.component';
-import { ItemComponent } from './item/item.component';
+import { ItemsModule } from './items/items.module';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +20,6 @@ import { ItemComponent } from './item/item.component';
     RoomInfoComponent,
     RoomUsersComponent,
     ItemSearchComponent,
-    ItemComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +27,7 @@ import { ItemComponent } from './item/item.component';
     SharedModule,
     ClipboardModule,
     RoomRoutingModule,
+    ItemsModule,
   ]
 })
 export class RoomModule { }

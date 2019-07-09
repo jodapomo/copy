@@ -1,0 +1,18 @@
+
+<div class="items-wrapper" #itemsWrapper >
+    <!-- [scrollTop]="itemsWrapper.scrollHeight" -->
+  <div class="fill">
+    <app-loader *ngIf="!items"></app-loader>
+  </div>
+  
+  <div class="items">
+
+    <div #getMoreItemsLoader class="top">
+        <app-loader></app-loader>
+    </div>
+
+    <app-item *ngFor="let item of items" [item]="item"></app-item>
+
+  </div>
+
+</div>
