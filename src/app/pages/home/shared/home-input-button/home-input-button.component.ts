@@ -58,13 +58,14 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChange
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges( changes: SimpleChanges ): void {
 
     if ( changes.presetedValue &&
         changes.presetedValue.currentValue &&
-        String( changes.presetedValue.currentValue ).length > 0 )
-    {
+        String( changes.presetedValue.currentValue ).length > 0 ) {
+
       this.value = String( this.presetedValue );
+
     }
 
   }

@@ -1,48 +1,48 @@
-import { Component, OnInit, Input, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+// tslint:disable-next-line: max-line-length
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { RoomService } from '../shared/services/room.service';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
-export class ItemsComponent implements OnInit, OnDestroy, AfterViewInit  {
+export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
   @Input() items: any[];
 
   @ViewChild('itemsWrapper', { static: false }) itemsWrapperElement: ElementRef;
   @ViewChild('getMoreItemsLoader', { static: false }) getMoreItemsLoaderElement: ElementRef;
 
+  page = 1;
+  limit: number;
+
   private observer: IntersectionObserver;
 
-  constructor() { }
+  constructor(
+    private roomService: RoomService,
+  ) {}
 
   ngOnInit() {
+    this.limit = this.roomService.limit;
   }
 
-  ngAfterViewInit() {
-    this.setInfiniteScroll();
-  }
+  ngOnChanges( changes: SimpleChanges ) {
 
-  scrollItemsToBottom() {
-    this.itemsWrapperElement.nativeElement.scrollTop = this.itemsWrapperElement.nativeElement.scrollHeight;
-  }
+    if (  changes.items &&
+          !changes.items.previousValue  &&
+          changes.items.currentValue
+    ) {
 
-  setInfiniteScroll() {
+      setTimeout(() => {
 
-    const options = {
-      root: this.itemsWrapperElement.nativeElement,
-    };
+        this.scrollItemsToBottom();
 
-    this.observer = new IntersectionObserver( ( [entry] ) => {
-
-      if ( entry.isIntersecting ) {
-        console.log('CARGUE MAS HP MP');
-        this.addItem();
-      }
-
-    }, options);
-    console.log('VOY');
-    this.observer.observe(this.getMoreItemsLoaderElement.nativeElement);
+        if ( this.items.length === this.limit ) {
+          this.setInfiniteScroll();
+        }
+      }, 0);
+    }
 
   }
 
@@ -58,6 +58,30 @@ export class ItemsComponent implements OnInit, OnDestroy, AfterViewInit  {
       this.items.unshift(item);
     }, 1000);
 
+  }
+
+
+  scrollItemsToBottom() {
+    this.itemsWrapperElement.nativeElement.scrollTop = this.itemsWrapperElement.nativeElement.scrollHeight;
+  }
+
+  setInfiniteScroll() {
+
+    const options = {
+      root: this.itemsWrapperElement.nativeElement,
+      threshold: 0
+    };
+
+    this.observer = new IntersectionObserver( ( [entry] ) => {
+
+      if ( entry.isIntersecting ) {
+        console.log('GET MORE ITEMS');
+        this.addItem();
+      }
+
+    }, options);
+
+    this.observer.observe( this.getMoreItemsLoaderElement.nativeElement );
 
   }
 

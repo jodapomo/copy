@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Room } from '../../../../models/room.model';
 import { tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -14,6 +14,7 @@ export class RoomService {
   private apiUrl: string;
 
   room: Room;
+  limit = 15;
 
 
   constructor(
@@ -36,7 +37,9 @@ export class RoomService {
 
     const url = `${ this.apiUrl }/rooms/${ id }`;
 
-    return this.http.get( url )
+    const params = new HttpParams().set('limit', String(this.limit));
+
+    return this.http.get( url, {params} )
       .pipe(
         map( (res: any) =>  new Room().deserialize( res.room ) ),
         tap( (room: Room) => this.room = room ),

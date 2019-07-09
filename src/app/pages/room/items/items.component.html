@@ -4,10 +4,10 @@
   <div class="fill">
     <app-loader *ngIf="!items"></app-loader>
   </div>
-  
-  <div class="items">
 
-    <div #getMoreItemsLoader class="top">
+  <div *ngIf="items" class="items">
+
+    <div #getMoreItemsLoader *ngIf="items.length >= limit" class="top">
         <app-loader></app-loader>
     </div>
 
