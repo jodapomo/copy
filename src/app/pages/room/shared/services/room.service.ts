@@ -50,21 +50,4 @@ export class RoomService {
 
   }
 
-  getItemsByRoomId( id: number, page: number ): Observable<Item[]> {
-
-    const url = `${ this.apiUrl }/rooms/${ id }/items`;
-
-    const params = new HttpParams()
-      .set('page', String( page ))
-      .set('pageSize', String(this.limit));
-
-    return this.http.get( url, {params} )
-      .pipe(
-        map( (res: any) =>  res.items.reverse() ),
-        map( (items: any[]) =>  items.map( item => new ITEM_TYPES[item.type]().deserialize(item) ) ),
-        take(1),
-      );
-
-  }
-
 }

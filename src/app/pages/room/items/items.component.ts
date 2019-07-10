@@ -12,6 +12,7 @@ import {
 
 import { RoomService } from '../shared/services/room.service';
 import { Item } from '../../../models/item.model';
+import { ItemsService } from './shared/services/items.service';
 
 @Component({
   selector: 'app-items',
@@ -34,11 +35,11 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
   thereMoreItems =  false;
 
   constructor(
-    private roomService: RoomService,
+    private itemsService: ItemsService,
   ) {}
 
   ngOnInit() {
-    this.limit = this.roomService.limit;
+    this.limit = this.itemsService.limit;
   }
 
   ngOnChanges( changes: SimpleChanges ) {
@@ -73,7 +74,7 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
     this.page++;
 
-    this.roomService.getItemsByRoomId( this.roomId, this.page)
+    this.itemsService.getItemsByRoomId( this.roomId, this.page)
       .subscribe( (items: Item[]) => {
 
         // if there are not more items to get
@@ -94,7 +95,7 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
     const currentScrollTop = this.itemsWrapperElement.nativeElement.scrollTop;
     const currentScrollHeight = this.itemsWrapperElement.nativeElement.scrollHeight;
 
-    // add item
+    // add items
     this.items.unshift(...items);
 
     setTimeout(() => {
