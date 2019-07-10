@@ -8,19 +8,17 @@ import {
   ElementRef,
   OnChanges,
   SimpleChanges,
-  AfterViewInit,
-  ViewChildren,
-  QueryList
 } from '@angular/core';
 
 import { RoomService } from '../shared/services/room.service';
+import { Item } from '../../../models/item.model';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
-export class ItemsComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit  {
+export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
   @Input() items: any[];
   @Input() roomId: number;
@@ -28,15 +26,12 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges, AfterViewIn
   @ViewChild('itemsWrapper', { static: false }) itemsWrapperElement: ElementRef;
   @ViewChild('getMoreItemsLoader', { static: false }) getMoreItemsLoaderElement: ElementRef;
 
-  @ViewChildren('itemRef', {read: ElementRef}) itemsElement: QueryList<ElementRef>;
-
-  latestItemOnView: ElementRef;
+  private triggerGetMoreItems: IntersectionObserver;
 
   page = 1;
   limit: number;
-  thereMoreItems =  false;
 
-  private observer: IntersectionObserver;
+  thereMoreItems =  false;
 
   constructor(
     private roomService: RoomService,
@@ -48,6 +43,7 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges, AfterViewIn
 
   ngOnChanges( changes: SimpleChanges ) {
 
+    // If it is the first time items are fetched -> Set the scroll to bottom and set trigger
     if (  changes.items &&
           !changes.items.previousValue  &&
           changes.items.currentValue
@@ -57,12 +53,14 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges, AfterViewIn
         this.thereMoreItems = true;
       }
 
+      // wait until the @ViewChild are accessible
       setTimeout(() => {
 
         this.scrollItemsToBottom();
 
+        // no set Trigger if there are less items in the first fetch than in the limit (pageSize)
         if ( this.items.length === this.limit ) {
-          this.setInfiniteScroll();
+          this.setTriggerGetMoreItems();
         }
 
       }, 0);
@@ -71,86 +69,75 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges, AfterViewIn
 
   }
 
-  ngAfterViewInit(): void {
-
-
-    this.itemsElement.changes.subscribe( (r) => {
-
-      console.log('CAMBIO');
-      this.latestItemOnView = this.itemsElement.first;
-      console.log(this.itemsElement.first);
-
-    });
-
-  }
-
-
-
   getMoreItems() {
+
     this.page++;
-    console.log('PAGE:', this.page);
+
     this.roomService.getItemsByRoomId( this.roomId, this.page)
-      .subscribe( (items: any[]) => {
+      .subscribe( (items: Item[]) => {
 
-        this.thereMoreItems = false;
-
+        // if there are not more items to get
         if ( items.length < this.limit ) {
-
+          // hide loader and disable trigger
           this.thereMoreItems = false;
-          this.observer.disconnect();
+          this.triggerGetMoreItems.disconnect();
         }
 
-        return this.items.unshift(...items);
+        this.setItemsAndMoveScroll(items);
+
       });
+  }
+
+  setItemsAndMoveScroll( items: Item[] ) {
+
+    // store scroll position before add items
+    const currentScrollTop = this.itemsWrapperElement.nativeElement.scrollTop;
+    const currentScrollHeight = this.itemsWrapperElement.nativeElement.scrollHeight;
+
+    // add item
+    this.items.unshift(...items);
+
+    setTimeout(() => {
+
+      // set scroll position to maintain scroll position in list when new items get added
+      const newScrollHeight = this.itemsWrapperElement.nativeElement.scrollHeight;
+      this.itemsWrapperElement.nativeElement.scrollTop = ( newScrollHeight - currentScrollHeight ) + currentScrollTop;
+
+    }, 0);
+
   }
 
   addItem() {
 
-    const item = {
-      content: 'added from angular',
-      type: 'Angular',
-      createdAt: new Date(),
-    };
-
-    setTimeout(() => {
-      this.items.unshift(item);
-    }, 1000);
-
   }
-
 
   scrollItemsToBottom() {
     this.itemsWrapperElement.nativeElement.scrollTop = this.itemsWrapperElement.nativeElement.scrollHeight;
   }
 
-  scrollToLatestItemOnView() {
-    console.log('SCROLL');
-
-    this.latestItemOnView.nativeElement.scrollIntoView();
-  }
-
-  setInfiniteScroll() {
+  setTriggerGetMoreItems() {
 
     const options = {
       root: this.itemsWrapperElement.nativeElement,
       threshold: 0
     };
 
-    this.observer = new IntersectionObserver( ( [entry] ) => {
+    // IntersectionObserver: https://www.smashingmagazine.com/2018/01/deferring-lazy-loading-intersection-observer-api/
+    this.triggerGetMoreItems = new IntersectionObserver( ( [entry] ) => {
 
+      // If the loader appears in the view -> getMoreItems
       if ( entry.isIntersecting ) {
-        console.log('GET MORE ITEMS');
         this.getMoreItems();
       }
 
     }, options);
 
-    this.observer.observe( this.getMoreItemsLoaderElement.nativeElement );
+    this.triggerGetMoreItems.observe( this.getMoreItemsLoaderElement.nativeElement );
 
   }
 
   ngOnDestroy() {
-    this.observer.disconnect();
+    this.triggerGetMoreItems.disconnect();
   }
 
 }

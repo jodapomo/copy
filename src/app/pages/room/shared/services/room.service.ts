@@ -3,6 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Room } from '../../../../models/room.model';
 import { tap, map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ITEM_TYPES } from 'src/app/models/item-types';
+import { Item } from '../../../../models/item.model';
+import { Observable } from 'rxjs';
 
 
 
@@ -33,7 +36,7 @@ export class RoomService {
 
   }
 
-  getRoomById( id: number ) {
+  getRoomById( id: number ): Observable<Room> {
 
     const url = `${ this.apiUrl }/rooms/${ id }`;
 
@@ -47,7 +50,7 @@ export class RoomService {
 
   }
 
-  getItemsByRoomId( id: number, page: number ) {
+  getItemsByRoomId( id: number, page: number ): Observable<Item[]> {
 
     const url = `${ this.apiUrl }/rooms/${ id }/items`;
 
@@ -58,7 +61,7 @@ export class RoomService {
     return this.http.get( url, {params} )
       .pipe(
         map( (res: any) =>  res.items.reverse() ),
-        tap( items => console.log(items)),
+        map( (items: any[]) =>  items.map( item => new ITEM_TYPES[item.type]().deserialize(item) ) ),
         take(1),
       );
 

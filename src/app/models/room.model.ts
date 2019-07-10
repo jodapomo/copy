@@ -1,5 +1,8 @@
 import { Deserializable } from './deserializable.model';
 import { TempUser } from './temp-user.model';
+import { Item } from './item.model';
+import { ITEM_TYPES } from './item-types';
+
 
 export class Room implements Deserializable {
 
@@ -8,7 +11,7 @@ export class Room implements Deserializable {
     id: number;
     name: string;
     tempUsers: TempUser[];
-    items: string[];
+    items: Item[];
     createdAt: Date;
     updatedAt: Date;
     locked: boolean;
@@ -20,7 +23,10 @@ export class Room implements Deserializable {
 
         this.tempUsers = input.tempUsers.map( tempUser => new TempUser().deserialize(tempUser));
 
+        this.items = input.items.map( item => new ITEM_TYPES[item.type]().deserialize(item) );
+
         return this;
+
     }
 
 }
