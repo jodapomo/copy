@@ -20,7 +20,7 @@ import { Item } from '../../../models/item.model';
 })
 export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
-  @Input() items: any[];
+  @Input() items: Item[];
   @Input() roomId: number;
 
   @ViewChild('itemsWrapper', { static: false }) itemsWrapperElement: ElementRef;

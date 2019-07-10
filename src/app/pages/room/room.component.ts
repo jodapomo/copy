@@ -5,6 +5,7 @@ import { Room } from '../../models/room.model';
 import { switchMap, tap } from 'rxjs/operators';
 import { ClipboardService } from 'ngx-clipboard';
 import { Location } from '@angular/common';
+import { Item } from '../../models/item.model';
 
 @Component({
   selector: 'app-room',
@@ -15,7 +16,7 @@ export class RoomComponent implements OnInit  {
 
   id: number;
   room: Room;
-  items: any[];
+  items: Item[];
 
   constructor(
     private route: ActivatedRoute,
