@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TempUser } from 'src/app/models/temp-user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -11,7 +12,9 @@ export class RoomUsersComponent implements OnInit {
 
   @Input() users: TempUser[];
 
-  constructor() { }
+  constructor(
+    public authService: AuthService,
+  ) { }
 
   ngOnInit() {
   }

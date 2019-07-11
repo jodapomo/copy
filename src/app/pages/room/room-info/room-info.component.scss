@@ -78,7 +78,7 @@
             &.clickable {
                 cursor: pointer;
                 border-radius: 5px;
-                transition: all 200ms ease-in-out;
+                transition: all 100ms linear;
 
                 &:hover {
                     box-shadow: rgba(37, 38, 39, 0.15) 0px 1px 3px 1px;

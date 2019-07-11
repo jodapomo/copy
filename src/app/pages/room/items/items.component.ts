@@ -138,7 +138,9 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
   }
 
   ngOnDestroy() {
-    this.triggerGetMoreItems.disconnect();
+    if ( this.triggerGetMoreItems ) {
+      this.triggerGetMoreItems.disconnect();
+    }
   }
 
 }

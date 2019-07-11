@@ -26,25 +26,30 @@
       </app-tooltip>
     </div>
 
-    <app-tooltip class="lock" [ngClass]="{'clickable': !room.locked}" tooltip-text="Lock room with a password" tooltip-direction="left" tooltip-effect="zoom" [tooltip-display]="!room.locked">
+    <app-tooltip *ngIf="!room.locked" class="lock" [ngClass]="{'clickable': authService.user.admin}"  tooltip-text="Lock room with a password" tooltip-direction="left" tooltip-effect="zoom" [tooltip-display]="authService.user.admin"> 
       <div >
-        <i *ngIf="!room.locked" class="fas fa-unlock"></i>
-        <i *ngIf="room.locked" [title]="room.name  + ' is locked with a password'" class="fas fa-lock"></i>
+        <i class="fas fa-unlock"></i>
+      </div>
+    </app-tooltip>
+
+    <app-tooltip *ngIf="room.locked" class="lock" [ngClass]="{'clickable': authService.user.admin}"  tooltip-text="Change password" tooltip-direction="left" tooltip-effect="zoom" [tooltip-display]="authService.user.admin">
+      <div >
+        <i  [title]="room.name  + ' is locked with a password'" class="fas fa-lock"></i>
       </div>
     </app-tooltip>
 
   </div>
 
   <div class="menu">
-    <div class="button home">
+    <div (click)="goHome()" class="button home">
       <i class="icon fas fa-home"></i>
       <span>Go home!</span>
     </div>
-    <div class="button delete-room">
+    <div class="button delete-room" *ngIf="authService.user.admin">
       <i class="icon far fa-trash-alt"></i>
       <span>Delete room</span>
     </div>
-    <div class="button sign-out">
+    <div (click)="logout()" class="button sign-out">
       <i class="icon fas fa-sign-out-alt"></i>
       <span>Sign out</span>
     </div>

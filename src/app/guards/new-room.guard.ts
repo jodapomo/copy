@@ -7,7 +7,7 @@ import { NewRoomService } from '../pages/home/shared/services/new-room.service';
 })
 export class NewRoomGuard implements CanActivate {
 
-  constructor( 
+  constructor(
     private newRoomService: NewRoomService,
     private router: Router,
   ) {}

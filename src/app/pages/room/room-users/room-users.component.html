@@ -1,11 +1,11 @@
 <div *ngIf="users" class="users">
 
-  <div *ngFor="let user of users" [ngClass]="{'offline': !user.online}" class="user">
+  <div *ngFor="let user of users" [ngClass]="{'offline': !user.online, 'you': user._id === authService.user._id}" class="user">
 
     <div class="icon">
-        <i *ngIf="!user.admin" class="fas fa-user"></i>
-      <!-- <i *ngIf="!user.admin" class="fas fa-user-tie"></i> IF user._id === _userService.user._id -->
-      <i *ngIf="user.admin" class="fas fa-crown"></i>
+      <i *ngIf="user._id === authService.user._id" class="fas fa-hand-point-right you-icon"></i>
+      <i *ngIf="!user.admin" class="fas fa-user"></i>
+      <i *ngIf="user.admin" class="fas fa-user-tie"></i>
     </div>
 
     <div [title]="user.username" class="username">

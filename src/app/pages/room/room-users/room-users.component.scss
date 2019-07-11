@@ -80,5 +80,19 @@
             }
         }
 
+        &.you {
+            .icon {
+                .you-icon {
+                    font-size: 15px;
+                }
+            }
+
+            .username {
+                span {
+                    font-weight: bold;
+                }
+            }
+        }
+
     }
 }

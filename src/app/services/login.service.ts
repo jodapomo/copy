@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { tap, map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class LoginService {
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService,
   ) {
 
     this.apiUrl = environment.apiUrl;
@@ -24,6 +26,7 @@ export class LoginService {
 
     return this.http.post( url, loginRoom )
       .pipe(
+        tap( (res: any) => this.authService.createSession( res.user, res.token, res.roomId ) ),
         map( (res: any) => res.roomId ),
       );
 
@@ -31,10 +34,11 @@ export class LoginService {
 
   createRoomAndLogin( newRoom ) {
 
-    const url = `${ this.apiUrl }/rooms`;
+    const url = `${ this.apiUrl }/rooms/login`;
 
     return this.http.post( url, newRoom )
       .pipe(
+        tap( (res: any) => this.authService.createSession( res.user, res.token, res.roomId ) ),
         map( (res: any) => res.roomId ),
       );
 

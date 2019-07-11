@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { Room } from 'src/app/models/room.model';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-room-info',
@@ -17,7 +19,9 @@ export class RoomInfoComponent implements OnInit {
   copyUrlTooltipMessage = 'Copy room url';
 
   constructor(
+    private router: Router,
     private clipboardService: ClipboardService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -48,6 +52,15 @@ export class RoomInfoComponent implements OnInit {
       this.copyUrlTooltipMessage = 'Copy room url';
       this.animateUrl = false;
     }, 1500);
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
 }
