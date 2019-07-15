@@ -49,13 +49,27 @@ export class RoomComponent implements OnInit, OnDestroy  {
 
   }
 
-  onUserLeave( user: TempUser ) {
-    console.log(user);
+  onUserJoin( user: TempUser ) {
+    if (user) {
+      const localUser = this.room.tempUsers.find( (tempUser: TempUser) => tempUser.username === user.username );
+
+      if ( localUser ) {
+        localUser.online = user.online;
+        return;
+      }
+
+      this.room.tempUsers.push(user);
+    }
   }
 
-  onUserJoin( user: TempUser ) {
-    console.log(user);
+  onUserLeave( user: TempUser ) {
+    if (user) {
+      const localUser = this.room.tempUsers.find( (tempUser: TempUser) => tempUser.username === user.username );
+      localUser.online = user.online;
+      localUser.lastLogin = user.lastLogin;
+    }
   }
+
 
   ngOnDestroy(): void {
     this.roomService.leave();

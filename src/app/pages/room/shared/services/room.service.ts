@@ -31,10 +31,7 @@ export class RoomService {
     private authService: AuthService,
     private ss: SocketService,
   ) {
-
     this.apiUrl = environment.apiUrl;
-    // this.setRoomUsersSocketEvents();
-
   }
 
 
@@ -55,15 +52,5 @@ export class RoomService {
   leave() {
     this.authService.emitLeave();
   }
-
-  // setRoomUsersSocketEvents() {
-  //   this.ss.socket.on('userJoin',  message => {
-  //     console.log('userJoin:', message);
-  //   });
-
-  //   this.ss.socket.on('userLeave',  message => {
-  //     console.log('userLeave:', message);
-  //   });
-  // }
 
 }
