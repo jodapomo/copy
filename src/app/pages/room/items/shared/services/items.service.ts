@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SocketService } from '../../../shared/services/socket.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -17,7 +16,6 @@ export class ItemsService {
 
   constructor(
     private http: HttpClient,
-    ss: SocketService,
   ) {
     this.apiUrl = environment.apiUrl;
   }

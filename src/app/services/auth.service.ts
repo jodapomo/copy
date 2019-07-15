@@ -5,6 +5,7 @@ import { tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { SocketService } from './socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private ss: SocketService,
   ) {
     this.apiUrl = environment.apiUrl;
   }
@@ -80,14 +82,17 @@ export class AuthService {
 
       if ( session !== undefined ) {
 
-        this.roomId = session.roomId;
+        this.roomId = Number(session.roomId);
         this.token = session.token;
 
         return this.getAuthUser( )
-          .pipe( map( user => {
+          .pipe(
+            tap(  user => this.emitJoin( session.roomId, user ) ),
+            map( user => {
               this.setSession(session, user);
               return true;
-          }));
+            })
+          );
 
       }
 
@@ -95,6 +100,14 @@ export class AuthService {
 
     return of(false);
 
+  }
+
+  emitJoin( roomId: number, user: TempUser ) {
+    this.ss.socket.emit('userJoin', { roomId, username: user.username });
+  }
+
+  emitLeave() {
+    this.ss.socket.emit('userLeave');
   }
 
   logout() {

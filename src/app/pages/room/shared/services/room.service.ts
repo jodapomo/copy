@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 import { ITEM_TYPES } from 'src/app/models/item-types';
 import { Item } from '../../../../models/item.model';
 import { Observable } from 'rxjs';
+import { SocketService } from 'src/app/services/socket.service';
+import { AuthService } from '../../../../services/auth.service';
+import { TempUser } from '../../../../models/temp-user.model';
 
 
 
@@ -19,22 +22,21 @@ export class RoomService {
   room: Room;
   limit = 15;
 
+  userJoin = this.ss.fromEvent<TempUser>('userJoin');
+  userLeave = this.ss.fromEvent<TempUser>('userLeave');
+
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService,
+    private ss: SocketService,
   ) {
 
     this.apiUrl = environment.apiUrl;
+    // this.setRoomUsersSocketEvents();
 
   }
 
-  getRooms() {
-
-    const url = `${ this.apiUrl }/rooms`;
-
-    return this.http.get( url );
-
-  }
 
   getRoomById( id: number ): Observable<Room> {
 
@@ -49,5 +51,19 @@ export class RoomService {
       );
 
   }
+
+  leave() {
+    this.authService.emitLeave();
+  }
+
+  // setRoomUsersSocketEvents() {
+  //   this.ss.socket.on('userJoin',  message => {
+  //     console.log('userJoin:', message);
+  //   });
+
+  //   this.ss.socket.on('userLeave',  message => {
+  //     console.log('userLeave:', message);
+  //   });
+  // }
 
 }
