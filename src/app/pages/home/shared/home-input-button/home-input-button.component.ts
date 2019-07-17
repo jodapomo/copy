@@ -1,4 +1,15 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -37,7 +48,7 @@ export class HomeInputButtonComponent implements OnInit, AfterViewInit, OnChange
 
   enter: boolean;
 
-  constructor( 
+  constructor(
     private location: Location,
     public router: Router,
   ) {

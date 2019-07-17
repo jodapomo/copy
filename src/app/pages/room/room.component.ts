@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { Item } from '../../models/item.model';
 import { Subscription } from 'rxjs';
 import { TempUser } from '../../models/temp-user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-room',
@@ -19,18 +20,19 @@ export class RoomComponent implements OnInit, OnDestroy  {
   room: Room;
   items: Item[];
 
-  private userJoinSub: Subscription;
-  private userLeaveSub: Subscription;
+  private userJoinSubs: Subscription;
+  private userLeaveSubs: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private roomService: RoomService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
     this.loadRoom();
-    this.userJoinSub = this.roomService.userJoin.subscribe( (user: TempUser) => this.onUserJoin(user) );
-    this.userLeaveSub = this.roomService.userLeave.subscribe( (user: TempUser) => this.onUserLeave(user) );
+    this.userJoinSubs = this.roomService.userJoin.subscribe( (user: TempUser) => this.onUserJoin(user) );
+    this.userLeaveSubs = this.roomService.userLeave.subscribe( (user: TempUser) => this.onUserLeave(user) );
   }
 
   loadRoom() {
@@ -43,6 +45,7 @@ export class RoomComponent implements OnInit, OnDestroy  {
     ).subscribe( room => {
       this.room = room;
       this.items = room.items.slice().reverse();
+      this.setAuthUserOnline();
       console.log(this.room);
       console.log(this.items);
     });
@@ -70,11 +73,19 @@ export class RoomComponent implements OnInit, OnDestroy  {
     }
   }
 
+  setAuthUserOnline() {
+    const localUser = this.room.tempUsers.find( (tempUser: TempUser) => tempUser.username === this.authService.user.username );
+
+    if ( localUser ) {
+      localUser.online = true;
+    }
+
+  }
 
   ngOnDestroy(): void {
     this.roomService.leave();
-    this.userJoinSub.unsubscribe();
-    this.userLeaveSub.unsubscribe();
+    this.userJoinSubs.unsubscribe();
+    this.userLeaveSubs.unsubscribe();
   }
 
 }

@@ -13,6 +13,7 @@ import {
 import { RoomService } from '../shared/services/room.service';
 import { Item } from '../../../models/item.model';
 import { ItemsService } from './shared/services/items.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-items',
@@ -34,12 +35,16 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
   thereMoreItems =  false;
 
+  newItemsSubs: Subscription;
+
   constructor(
     private itemsService: ItemsService,
   ) {}
 
   ngOnInit() {
     this.limit = this.itemsService.limit;
+
+    this.newItemsSubs = this.itemsService.newItemsSubject.subscribe( (item: Item) => this.newItem(item));
   }
 
   ngOnChanges( changes: SimpleChanges ) {
@@ -57,7 +62,7 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
       // wait until the @ViewChild are accessible
       setTimeout(() => {
 
-        this.scrollItemsToBottom();
+        this.scrollToBottom();
 
         // no set Trigger if there are less items in the first fetch than in the limit (pageSize)
         if ( this.items.length === this.limit ) {
@@ -68,6 +73,15 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
     }
 
+  }
+
+  newItem( item: Item ) {
+    if (item) {
+      this.items.push(item);
+      setTimeout(() => {
+        this.scrollToBottom();
+      });
+    }
   }
 
   getMoreItems() {
@@ -112,7 +126,7 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
   }
 
-  scrollItemsToBottom() {
+  scrollToBottom() {
     this.itemsWrapperElement.nativeElement.scrollTop = this.itemsWrapperElement.nativeElement.scrollHeight;
   }
 

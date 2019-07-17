@@ -1,0 +1,72 @@
+@import "../../../../assets/css/variables.scss";
+
+.input-wrapper {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+
+    .input {
+        flex: 1 1 0;
+        max-width: calc(100% - 150px);
+    }
+
+    .send {
+        width: 75px;
+        .button {
+            background: #fafafa;
+            line-height: 1.7;
+            height: 100%;
+            position: relative;
+            color: $BLACKSHADOW;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            
+            .icon {
+                transition: background .2s ease-in-out;
+                position: relative;
+                top: 2px;
+                left: 2px;
+                filter: drop-shadow(1px  1px 0px $ROCKETMETALLIC);
+            }
+            
+            &.clickable {
+                
+                .icon {
+                    filter: drop-shadow(1px  1px 0px $ROCKETMETALLIC)
+                            drop-shadow(2px  2px 0px $ROCKETMETALLIC);
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    
+                    &:hover {
+                        color: darken($BLACKSHADOW, 8%);
+                    }
+                
+                    &:active {
+                        border: none;
+                        outline: none;
+                        top: 2px;
+                        left: 2px;
+                        filter: drop-shadow(1px  1px 0px $ROCKETMETALLIC);
+                    }
+                }
+
+                &.pressed {
+                    .icon {
+                        border: none;
+                        outline: none;
+                        top: 2px;
+                        left: 2px;
+                        filter: drop-shadow(1px  1px 0px $ROCKETMETALLIC);
+                    }
+                }
+            }
+
+            
+
+        }
+    }
+}

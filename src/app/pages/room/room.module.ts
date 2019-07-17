@@ -11,6 +11,7 @@ import { RoomInfoComponent } from './room-info/room-info.component';
 import { RoomUsersComponent } from './room-users/room-users.component';
 import { ItemSearchComponent } from './item-search/item-search.component';
 import { ItemsModule } from './items/items.module';
+import { InputModule } from './input/input.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ItemsModule } from './items/items.module';
     ClipboardModule,
     RoomRoutingModule,
     ItemsModule,
+    InputModule,
   ]
 })
 export class RoomModule { }

@@ -1,0 +1,18 @@
+
+<div (window:keydown.enter)="pressButton()" (window:keyup.enter)="releaseButtonAndSend()" class="input-wrapper">
+
+  <app-type-picker></app-type-picker>
+
+  <div class="input">
+    <app-text-input></app-text-input>
+  </div>
+
+  <div class="send">
+    <div class="button" [ngClass]="{'pressed': enterPressed, 'clickable': inputService.valid }">
+      <span (click)="send()">
+        <i class="fas fa-caret-square-right icon"></i>
+      </span>
+    </div>
+  </div>
+
+</div>
