@@ -7,8 +7,9 @@ export class Item implements Deserializable {
     // tslint:disable-next-line: variable-name
     _id: string;
     user: {
-        id: string,
+        _id: string,
         username: string,
+        admin: boolean,
     };
     notes: Note[];
     type: string;
