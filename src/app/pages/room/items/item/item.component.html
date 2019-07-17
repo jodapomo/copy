@@ -1,5 +1,13 @@
 <div class="item">
-    <h4>{{ item.type }}</h4>
-    <p>{{ item.content }}</p>
-    {{ item.createdAt | date:'dd/MM/yyyy HH:mm:ss' }}
+
+    <div class="info">
+        <app-item-info [item]="item"></app-item-info>
+    </div>
+
+    <app-text-item [item]="item" class="item-content"></app-text-item>
+
+    <div class="menu">
+        <i class="far fa-copy"></i>
+    </div>
+    
 </div>

@@ -1,0 +1,21 @@
+<div class="user" [ngClass]="{ 'you': item.user._id === authService.user._id }">
+    <div class="icon">
+      <i *ngIf="item.user._id === authService.user._id" class="fas fa-hand-point-right you-icon"></i>
+  
+      <i *ngIf="!item.user.admin" class="fas fa-user"></i>
+      <i *ngIf="item.user.admin" class="fas fa-user-tie"></i>
+    </div>
+
+    <span class="username">{{ item.user.username }}</span>
+
+</div>
+
+<div class="date">
+    <i class="far fa-calendar-alt icon"></i>
+    <span>{{ item.createdAt | date:'dd/MM/yyyy' }}</span>
+</div>
+
+<div class="hour">
+    <i class="far fa-clock icon"></i>
+    <span>{{ item.createdAt | date:'h:mm:ss a' | lowercase }}</span>
+</div>

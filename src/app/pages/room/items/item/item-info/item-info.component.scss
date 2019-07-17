@@ -1,0 +1,50 @@
+@import "../../../../../../assets/css/variables.scss";
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3px;
+    border-bottom: 1px solid $BLACKSHADOW;
+
+    .icon {
+        font-size: 20px;
+        color: $BLACKSHADOW;
+
+        .you-icon {
+            font-size: 15px;
+        }
+        
+    }
+
+    .username {
+        font-size: 14px;
+    }
+
+    &.you {
+
+
+        .username { 
+            font-weight: bold;
+        }
+    }
+}
+
+.date {
+    margin-bottom: 3px;
+}
+
+.date, .hour {
+    display: flex;
+    justify-content: center;
+
+    .icon {
+        font-size: 10px;
+        margin-right: 2px;
+        margin-top: 1px;
+    }
+
+    span {
+        font-size: 10px;
+    }
+}

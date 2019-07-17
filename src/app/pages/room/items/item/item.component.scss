@@ -1,12 +1,31 @@
 @import "../../../../../assets/css/variables.scss";
 
 .item {
-    min-height: 50px;
+    min-height: 100px;
     box-shadow: rgba(37, 38, 39, 0.274) 0px 1px 3px 1px;
     background: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border-radius: 5px;
     text-align: center;
     overflow: hidden;
-    padding: 10px;
+    display: flex;
+    
+    .info {
+        padding: 10px;
+        background: #fafafa;
+        width: 100px;
+        box-shadow: rgba(37, 38, 39, 0.274) 0px 1px 3px 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .item-content {
+        flex: 1 1 0;
+    }
+
+    .menu {
+        background: rgb(111, 231, 95);
+        width: 50px;
+    }
 }
