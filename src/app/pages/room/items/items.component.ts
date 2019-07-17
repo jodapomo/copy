@@ -86,19 +86,18 @@ export class ItemsComponent implements OnInit, OnDestroy, OnChanges  {
 
   getMoreItems() {
 
-    this.page++;
+    this.itemsService.getItemsByRoomId( this.roomId, this.page + 1)
+    .subscribe( (items: Item[]) => {
+      this.page++;
 
-    this.itemsService.getItemsByRoomId( this.roomId, this.page)
-      .subscribe( (items: Item[]) => {
+      // if there are not more items to get
+      if ( items.length < this.limit ) {
+        // hide loader and disable trigger
+        this.thereMoreItems = false;
+        this.triggerGetMoreItems.disconnect();
+      }
 
-        // if there are not more items to get
-        if ( items.length < this.limit ) {
-          // hide loader and disable trigger
-          this.thereMoreItems = false;
-          this.triggerGetMoreItems.disconnect();
-        }
-
-        this.setItemsAndMoveScroll(items);
+      this.setItemsAndMoveScroll(items);
 
       });
   }
