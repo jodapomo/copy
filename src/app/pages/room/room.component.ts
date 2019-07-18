@@ -3,7 +3,6 @@ import { RoomService } from './shared/services/room.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Room } from '../../models/room.model';
 import { switchMap, tap } from 'rxjs/operators';
-import { Location } from '@angular/common';
 import { Item } from '../../models/item.model';
 import { Subscription } from 'rxjs';
 import { TempUser } from '../../models/temp-user.model';
@@ -49,8 +48,6 @@ export class RoomComponent implements OnInit, OnDestroy  {
       this.items = room.items.slice().reverse();
       this.setAuthUserOnline();
       this.titleService.setTitle(`${ room.name } - Copy`);
-      console.log(this.room);
-      console.log(this.items);
     });
 
   }

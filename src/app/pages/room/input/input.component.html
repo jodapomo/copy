@@ -8,11 +8,18 @@
   </div>
 
   <div class="send">
-    <div class="button" [ngClass]="{'pressed': enterPressed, 'clickable': inputService.valid }">
+
+    <div *ngIf="!inputService.sendingItem" class="button" [ngClass]="{'pressed': enterPressed, 'clickable': inputService.valid }">
       <span (click)="send()">
         <i class="fas fa-caret-square-right icon"></i>
       </span>
     </div>
-  </div>
 
+    <div *ngIf="inputService.sendingItem" class="button clickable">
+      <span>
+        <i class="fas fa-sync-alt icon fa-spin"></i>
+      </span>
+    </div>
+
+  </div>
 </div>

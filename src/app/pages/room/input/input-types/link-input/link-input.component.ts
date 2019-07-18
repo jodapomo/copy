@@ -45,7 +45,6 @@ export class LinkInputComponent implements OnInit, AfterViewInit, OnDestroy {
           this.inputService.changeType('text');
           return;
         }
-
         this.inputService.valid = true;
         return;
       }

@@ -20,6 +20,7 @@ export class InputService {
 
   // tslint:disable-next-line: variable-name
   public _valid = false;
+  public sendingItem = false;
 
   constructor(
     private itemsService: ItemsService,
@@ -38,20 +39,24 @@ export class InputService {
 
       this.cleanSubject.next(true);
 
-      this.itemsService.createItem(item).subscribe();
+      this.sendingItem = true;
+
+      this.itemsService.createItem(item).subscribe( _ => this.sendingItem = false );
     }
   }
 
   isLink( value: string ) {
-    if ( urlRegx.test(value) ) {
+    if ( urlRegx.test(value.trim()) ) {
       return true;
     }
     return false;
   }
 
   changeType( type: string ) {
-    this.typeChangeSubject.next(type);
-    this._type = type;
+    if ( type !== this._type ) {
+      this.typeChangeSubject.next(type);
+      this._type = type;
+    }
   }
 
   reset() {
@@ -60,11 +65,7 @@ export class InputService {
   }
 
   public set type( type: string ) {
-
-    if ( type !== this._type ) {
-      this.changeType(type);
-    }
-
+    this.changeType(type);
   }
 
   public get type(): string {

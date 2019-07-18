@@ -18,7 +18,7 @@ export class InputComponent implements OnInit, OnDestroy {
   typeChangeSubs: Subscription;
 
   constructor(
-    private inputService: InputService,
+    public inputService: InputService,
     private componentFactoryResolver: ComponentFactoryResolver,
   ) { }
 

@@ -31,6 +31,7 @@ export class TextInputComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.cleanSubs = this.inputService.cleanSubject.subscribe( _ => {
       this.newTextItem.content = '';
+      this.inputService.reset();
       this.focusInput();
     });
 

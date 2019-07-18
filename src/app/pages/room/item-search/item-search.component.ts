@@ -21,7 +21,6 @@ export class ItemSearchComponent implements OnInit {
   }
 
   search() {
-    console.log(this.searchTerm);
   }
 
   focusSearch() {
