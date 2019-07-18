@@ -3,11 +3,11 @@
 .input-wrapper {
     height: 100%;
     display: flex;
-    overflow: hidden;
 
     .input {
         flex: 1 1 0;
         max-width: calc(100% - 150px);
+        background: #fafafa;
     }
 
     .send {

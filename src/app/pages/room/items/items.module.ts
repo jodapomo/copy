@@ -6,6 +6,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TextItemComponent } from './item-types/text-item/text-item.component';
 import { ItemInfoComponent } from './item/item-info/item-info.component';
 import { ItemButtonComponent } from './shared/item-button/item-button.component';
+import { LinkItemComponent } from './item-types/link-item/link-item.component';
+import { ItemTypeDirective } from './shared/directives/item-type.directive';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,15 @@ import { ItemButtonComponent } from './shared/item-button/item-button.component'
     TextItemComponent,
     ItemInfoComponent,
     ItemButtonComponent,
+    LinkItemComponent,
+    ItemTypeDirective,
   ],
   exports: [
     ItemsComponent,
+  ],
+  entryComponents: [
+    TextItemComponent,
+    LinkItemComponent,
   ],
   imports: [
     CommonModule,

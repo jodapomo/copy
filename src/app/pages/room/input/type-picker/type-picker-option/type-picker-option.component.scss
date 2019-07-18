@@ -1,0 +1,28 @@
+@import "../../../../../../assets/css/variables.scss";
+
+:host {
+    width: 74px; 
+    height: 74px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+        background: darken(#fafafa, 2%);
+    }
+    
+    &:active {
+        background: darken(#fafafa, 5%);
+    }
+}
+
+.icon {
+    font-size: 40px;
+    color: $BLACKSHADOW;
+}
+
+span {
+    font-size: 12px;
+}

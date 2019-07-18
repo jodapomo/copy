@@ -1,0 +1,60 @@
+@import "../../../../../../assets/css/variables.scss";
+
+:host {
+    display: flex;
+    flex: 1 1 0;
+}
+
+.item-content {
+    flex: 1 1 0;
+    align-items: center;
+    max-height: 120px;
+    display: flex;
+    overflow: hidden;
+
+    .info {
+        padding: 10px;
+        flex: 1 1 0;
+        height: 100%;
+        width: 0;
+
+        .title {
+            font-size: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 3px;
+        }
+
+        .description {
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        a {
+            text-decoration: underline;
+            color: lighten($ROCKETMETALLIC, 30%);
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+        }
+    }
+
+    .img {
+        height: 100%;
+        width: 25%;
+        text-align: center;
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.menu {
+    background: rgb(111, 231, 95);
+    width: 80px;
+    box-shadow: rgba(37, 38, 39, 0.274) 0px 1px 3px 1px;
+    display: flex;
+    flex-wrap: wrap;
+}

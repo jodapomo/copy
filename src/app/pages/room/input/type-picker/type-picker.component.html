@@ -1,4 +1,18 @@
-<div class="type-picker">
-  <i class="fas fa-font icon"></i>
-  <span>Text</span>
+<div class="type-picker" [ngSwitch]="type" (click)="click($event)">
+
+  <type-picker-option *ngSwitchCase="'text'" text="Text" iconClass="fas fa-font"></type-picker-option>
+  <type-picker-option *ngSwitchCase="'link'" text="Link" iconClass="fas fa-link"></type-picker-option>
+  <type-picker-option *ngSwitchCase="'code'" text="Code" iconClass="fas fa-code"></type-picker-option>
+  <type-picker-option *ngSwitchDefault text="Text" iconClass="fas fa-font"></type-picker-option>
+
+</div>
+
+<div class="select-box" [ngClass]="{'opened': selecting}">
+
+  <type-picker-option text="Code" iconClass="fas fa-code" (click)="changeType('code')"></type-picker-option>
+
+  <type-picker-option text="Link" iconClass="fas fa-link" (click)="changeType('link')"></type-picker-option>
+
+  <type-picker-option text="Text" iconClass="fas fa-font" (click)="changeType('text')"></type-picker-option>
+  
 </div>

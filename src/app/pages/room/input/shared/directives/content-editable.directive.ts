@@ -70,7 +70,8 @@ export class ContentEditableDirective implements OnChanges {
     private refreshView() {
       const newContent = this.contenteditableModel;
       if (newContent !== this.elRef.nativeElement['innerText']) {
-        this.elRef.nativeElement['innerText'] = newContent;
+        this.elRef.nativeElement.focus();
+        document.execCommand('insertText', false, newContent);
       }
     }
 

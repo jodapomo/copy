@@ -21,6 +21,11 @@ export class TextInputComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
+    if ( this.inputService.plainTextInput ) {
+      this.newTextItem.content = this.inputService.plainTextInput;
+    }
+
     this.inputService.content = this.newTextItem;
     this.inputService.valid = false;
 
@@ -33,11 +38,20 @@ export class TextInputComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onChange() {
     setTimeout(() => {
+      this.inputService.plainTextInput = this.newTextItem.content;
       if ( this.newTextItem.content.length > 0 ) {
+
+        if ( this.inputService.isLink(this.newTextItem.content) ) {
+          this.inputService.changeType('link');
+          return;
+        }
+
         this.inputService.valid = true;
         return;
       }
+
       this.inputService.valid = false;
+
     });
   }
 
@@ -48,6 +62,7 @@ export class TextInputComponent implements OnInit, AfterViewInit, OnDestroy {
   focusInput() {
     this.inputElement.nativeElement.focus();
   }
+
 
   ngOnDestroy(): void {
     this.cleanSubs.unsubscribe();

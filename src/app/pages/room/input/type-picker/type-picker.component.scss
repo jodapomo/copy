@@ -8,13 +8,39 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    cursor: pointer;
     
-    .icon {
-        font-size: 40px;
-        color: $BLACKSHADOW;
+    &:hover {
+        background: darken(#fafafa, 2%);
     }
 
-    span {
-        font-size: 12px;
+    &:active {
+        background: darken(#fafafa, 5%);
+    }
+}
+
+:host {
+    position: relative;
+}
+
+.select-box {
+    position: absolute;
+    background: #fff;
+    box-shadow: rgba(28, 28, 29, 0.61) 0px 1px 6px 1px;
+    border-radius: 5px;
+    overflow: hidden;
+    bottom: 5px;
+    left: 80px;
+    transition: all .2s ease-in-out;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+
+    &.opened {
+        transition: all .4s ease-in-out;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 }

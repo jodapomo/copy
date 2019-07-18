@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ItemsService } from '../items/shared/services/items.service';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { urlRegx } from 'src/app/utils/urlRegex';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,19 @@ export class InputService {
   // tslint:disable-next-line: variable-name
   private _content: any;
 
-  public cleanSubject: Subject<boolean>;
+  public plainTextInput: string;
 
-  public valid: boolean;
+  public cleanSubject: Subject<boolean>;
+  public typeChangeSubject: Subject<string>;
+
+  // tslint:disable-next-line: variable-name
+  public _valid = false;
 
   constructor(
     private itemsService: ItemsService,
   ) {
     this.cleanSubject = new Subject();
+    this.typeChangeSubject = new Subject();
   }
 
 
@@ -36,8 +42,29 @@ export class InputService {
     }
   }
 
-  public set type( type: string ) {
+  isLink( value: string ) {
+    if ( urlRegx.test(value) ) {
+      return true;
+    }
+    return false;
+  }
+
+  changeType( type: string ) {
+    this.typeChangeSubject.next(type);
     this._type = type;
+  }
+
+  reset() {
+    this.plainTextInput = undefined;
+    this.changeType('text');
+  }
+
+  public set type( type: string ) {
+
+    if ( type !== this._type ) {
+      this.changeType(type);
+    }
+
   }
 
   public get type(): string {
@@ -50,6 +77,17 @@ export class InputService {
 
   public get content() {
     return this._content;
+  }
+
+  public set valid( valid ) {
+    // wait next tick
+    setTimeout(() => {
+      this._valid = valid;
+    });
+  }
+
+  public get valid() {
+    return this._valid;
   }
 
 

@@ -1,0 +1,27 @@
+<div class="item-content">
+
+  <div class="info">
+    <h4 class="title" *ngIf="item.title">{{ item.title }}</h4>
+    <p class="description" *ngIf="item.description">{{ item.description }}</p>
+    <a [href]="item.link" class="link" target="_blank">{{ item.link }}</a>
+  </div>
+
+  <div *ngIf="item.image" class="img" [style.background-image]="'url(' + item.image + ')'">
+  </div>
+
+</div>
+
+
+<div class="menu">
+
+    <app-item-button (click)="onCopy()">
+        <i class="far fa-copy icon"></i>
+        <span>{{ copyButtonText }}</span>
+    </app-item-button>
+
+    <app-item-button (click)="onOpen()">
+        <i class="fas fa-external-link-alt icon"></i>
+        <span>Open</span>
+    </app-item-button>
+
+</div>
