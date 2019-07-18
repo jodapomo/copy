@@ -1,0 +1,26 @@
+@import "../../../../../../assets/css/variables.scss";
+
+.item-content {
+    flex: 1 1 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    pre {
+        margin-bottom: 0;
+        font-family: inherit;
+        font-size: 18px;
+        color: inherit;
+        width: 100%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+}
+
+.menu {
+    background: rgb(111, 231, 95);
+    width: 80px;
+    box-shadow: rgba(37, 38, 39, 0.274) 0px 1px 3px 1px;
+    display: flex;
+    flex-wrap: wrap;
+}

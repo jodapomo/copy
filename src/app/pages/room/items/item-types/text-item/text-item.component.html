@@ -1,3 +1,23 @@
-<h4>{{ item.type }}</h4>
-<p>{{ item.content }}</p>
-{{ item.createdAt | date:'dd/MM/yyyy HH:mm:ss' }}
+<div class="item-content">
+    <pre>{{ item.content }}</pre>
+</div>
+
+
+<div class="menu">
+
+    <app-item-button (click)="onCopy()" [big]="true">
+        <i class="far fa-copy icon"></i>
+        <span>{{ copyButtonText }}</span>
+    </app-item-button>
+
+    <!-- <app-item-button>
+        <i class="fas fa-external-link-alt icon"></i>
+        <span>Open</span>
+    </app-item-button> -->
+
+    <!-- <app-item-button>
+        <i class="far fa-arrow-alt-circle-down icon"></i>
+        <span>Download</span>
+    </app-item-button> -->
+
+</div>

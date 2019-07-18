@@ -1,0 +1,43 @@
+:host {
+    background: #fafafa;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+
+    &:hover {
+        background: darken(#fafafa, 5%);
+    }
+
+    &:active {
+        background: darken(#fafafa, 10%);
+    }
+
+    &.big {
+        flex-direction: column;
+
+        ::ng-deep {
+            
+            .icon {
+                font-size: 20px;
+                margin-right: 0;
+                margin-bottom: 3px;
+            }
+
+            span {
+                font-size: 13px;
+            }
+        } 
+    }
+}
+
+:host ::ng-deep .icon {
+    font-size: 15px;
+    margin-right: 3px;
+}
+
+:host ::ng-deep span {
+    font-size: 10px;
+}

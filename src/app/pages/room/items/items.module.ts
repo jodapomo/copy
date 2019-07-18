@@ -5,6 +5,7 @@ import { ItemComponent } from './item/item.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TextItemComponent } from './item-types/text-item/text-item.component';
 import { ItemInfoComponent } from './item/item-info/item-info.component';
+import { ItemButtonComponent } from './shared/item-button/item-button.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ItemInfoComponent } from './item/item-info/item-info.component';
     ItemComponent,
     TextItemComponent,
     ItemInfoComponent,
+    ItemButtonComponent,
   ],
   exports: [
     ItemsComponent,
