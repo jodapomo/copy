@@ -6,7 +6,7 @@
       <i *ngIf="item.user.admin" class="fas fa-user-tie"></i>
     </div>
 
-    <span class="username">{{ item.user.username }}</span>
+    <span [title]="item.user.username" class="username">{{ item.user.username }}</span>
 
 </div>
 
