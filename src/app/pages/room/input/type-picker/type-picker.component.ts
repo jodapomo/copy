@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class TypePickerComponent implements OnInit, OnDestroy {
 
-  type = 'text';
+  type: string;
   selecting = false;
 
   typeChangeSubs: Subscription;
@@ -20,7 +20,6 @@ export class TypePickerComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.inputService.type = this.type;
 
     this.typeChangeSubs = this.inputService.typeChangeSubject
       .subscribe( type => {

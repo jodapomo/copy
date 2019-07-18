@@ -46,17 +46,17 @@ export class InputService {
   }
 
   isLink( value: string ) {
-    if ( urlRegx.test(value.trim()) ) {
-      return true;
+    if ( !(/\s/.test(value) )) {
+      if ( urlRegx.test(value.trim()) ) {
+        return true;
+      }
     }
     return false;
   }
 
   changeType( type: string ) {
-    if ( type !== this._type ) {
-      this.typeChangeSubject.next(type);
-      this._type = type;
-    }
+    this.typeChangeSubject.next(type);
+    this._type = type;
   }
 
   reset() {

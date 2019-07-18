@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, OnDestroy, AfterContentInit } from '@angular/core';
 import { InputService } from './input.service';
 import { InputTypeDirective } from './shared/directives/input-type.directive';
 import { Subscription } from 'rxjs';
@@ -25,19 +25,17 @@ export class InputComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.typeChangeSubs = this.inputService.typeChangeSubject
-      .subscribe( type => {
-        const inputType = this.getInputTypeComponent(type);
+    .subscribe( type => {
+      this.loadInputType(type);
+    });
 
-        if (!inputType) {
-          return;
-        }
-
-        this.loadInputType(inputType);
-      });
-
+    this.inputService.type = 'text';
   }
 
-  loadInputType(inputType) {
+
+  loadInputType( type: string ) {
+
+    const inputType = this.getInputTypeComponent(type);
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(inputType);
 
