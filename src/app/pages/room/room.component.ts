@@ -8,6 +8,7 @@ import { Item } from '../../models/item.model';
 import { Subscription } from 'rxjs';
 import { TempUser } from '../../models/temp-user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-room',
@@ -25,6 +26,7 @@ export class RoomComponent implements OnInit, OnDestroy  {
 
   constructor(
     private route: ActivatedRoute,
+    private titleService: Title,
     private roomService: RoomService,
     private authService: AuthService,
   ) {}
@@ -46,6 +48,7 @@ export class RoomComponent implements OnInit, OnDestroy  {
       this.room = room;
       this.items = room.items.slice().reverse();
       this.setAuthUserOnline();
+      this.titleService.setTitle(`${ room.name } - Copy`);
       console.log(this.room);
       console.log(this.items);
     });
