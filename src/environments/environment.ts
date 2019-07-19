@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api/v1',
-  serverUrl: 'http://localhost:3000',
+  apiUrl: 'https://copy-api.herokuapp.com/api/v1',
+  serverUrl: 'https://copy-api.herokuapp.com',
 };
 
 /*

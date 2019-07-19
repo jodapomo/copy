@@ -15,7 +15,7 @@
     >
   </div>
   
-  <span *ngIf="searchTerm.length > 0 && !loading" (click)="clearSearch()" class="icon-wrapper">
+  <span *ngIf="searchTerm.length > 0 && !searching" (click)="clearSearch()" class="icon-wrapper">
     <i class="fas fa-times-circle input-button erase"></i>
   </span>
   
