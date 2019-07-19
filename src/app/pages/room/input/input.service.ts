@@ -46,7 +46,7 @@ export class InputService {
   }
 
   isLink( value: string ) {
-    if ( !(/\s/.test(value) )) {
+    if ( !(/\S(\s+)\S/.test(value) )) {
       if ( urlRegx.test(value.trim()) ) {
         return true;
       }
