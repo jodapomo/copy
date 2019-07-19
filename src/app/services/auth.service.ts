@@ -71,6 +71,22 @@ export class AuthService {
 
   }
 
+  sessionExist( roomId: number ): boolean {
+    const sessions: Session[] = JSON.parse(localStorage.getItem('sessions'));
+
+    if ( sessions ) {
+
+      const session = sessions.find( (s: Session) => Number(s.roomId) === Number(roomId) );
+
+      if ( session ) {
+        return true;
+      }
+
+    }
+
+    return false;
+  }
+
   checkIfSessionExistAndSet( roomId: number ): Observable<boolean> {
 
     const sessions: Session[] = JSON.parse(localStorage.getItem('sessions'));

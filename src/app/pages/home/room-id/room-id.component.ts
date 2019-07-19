@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../shared/services/home.service';
 import { EnterRoomService } from '../shared/services/enter-room.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-room-id',
@@ -21,6 +22,7 @@ export class RoomIdComponent implements OnInit {
     private router: Router,
     private homeServie: HomeService,
     private enterRoomService: EnterRoomService,
+    private authService: AuthService,
   ) {
 
     this.loading = false;
@@ -41,6 +43,18 @@ export class RoomIdComponent implements OnInit {
   onSend( roomId: number ) {
 
     this.loading = true;
+
+    if ( this.authService.sessionExist( roomId ) ) {
+      this.router.navigate([ '/room', roomId ]);
+      this.loading = false;
+      return;
+    }
+
+    this.checkRoom(roomId);
+
+  }
+
+  checkRoom( roomId: number ) {
 
     this.homeServie.checkRoom( roomId )
       .subscribe( locked => {
@@ -69,7 +83,6 @@ export class RoomIdComponent implements OnInit {
         this.loading = false;
 
       });
-
   }
 
   onFormatError( error: boolean ) {
