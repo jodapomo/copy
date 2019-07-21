@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
+import { map, take, catchError } from 'rxjs/operators';
 import { HomeService } from '../pages/home/shared/services/home.service';
 import { EnterRoomService } from '../pages/home/shared/services/enter-room.service';
 
@@ -26,39 +26,45 @@ export class AuthGuard implements CanActivate {
 
       const thereSessionObservable = this.authService.checkIfSessionExistAndSet( roomId );
 
-      return thereSessionObservable.pipe(
-        take(1),
-        map( thereSession => {
+      return thereSessionObservable
+        .pipe(
+          catchError( _ => {
+            this.router.navigate(['/'], { queryParams: { error: 'Something bad happened; please try again later (server).' } });
+            return of(false);
+          }),
+          take(1),
+          map( thereSession => {
 
-        if ( thereSession ) {
-          return true;
-        }
-
-        this.homeServie.checkRoom( roomId )
-          .pipe(take(1))
-          .subscribe( locked => {
-
-            this.enterRoomService.setRoomId( roomId );
-
-            if ( locked ) {
-
-              this.enterRoomService.setRoomLocked( true );
-              this.router.navigate([ '/enter-room/password' ]);
-              return false;
-
-            } else {
-
-              this.enterRoomService.setRoomLocked( false );
-              this.router.navigate([ '/enter-room/username' ]);
-              return false;
-
+            if ( thereSession ) {
+              return true;
             }
 
-          }, _ => {
-            this.router.navigate(['/']);
-            return false;
-          });
-      }));
+            this.homeServie.checkRoom( roomId )
+              .pipe(take(1))
+              .subscribe( locked => {
+
+                this.enterRoomService.setRoomId( roomId );
+
+                if ( locked ) {
+
+                  this.enterRoomService.setRoomLocked( true );
+                  this.router.navigate([ '/enter-room/password' ]);
+                  return false;
+
+                } else {
+
+                  this.enterRoomService.setRoomLocked( false );
+                  this.router.navigate([ '/enter-room/username' ]);
+                  return false;
+
+                }
+
+              }, _ => {
+                this.router.navigate(['/'], { queryParams: { error: 'Something bad happened; please try again later (server).' } });
+                return false;
+              });
+          }),
+        );
 
   }
 

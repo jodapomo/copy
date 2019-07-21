@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HomeService } from '../shared/services/home.service';
 import { EnterRoomService } from '../shared/services/enter-room.service';
 import { AuthService } from '../../../services/auth.service';
@@ -20,6 +20,7 @@ export class RoomIdComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private homeServie: HomeService,
     private enterRoomService: EnterRoomService,
     private authService: AuthService,
@@ -38,6 +39,14 @@ export class RoomIdComponent implements OnInit {
       this.presetedValue = this.enterRoomService.getRoomId();
     }
 
+    this.route.queryParams.subscribe( val => {
+      if ( val.error ) {
+        this.router.navigate(['/']);
+        this.error = true;
+        this.errorMessage = val.error;
+        this.loading = false;
+      }
+    });
   }
 
   onSend( roomId: number ) {
@@ -46,7 +55,6 @@ export class RoomIdComponent implements OnInit {
 
     if ( this.authService.sessionExist( roomId ) ) {
       this.router.navigate([ '/room', roomId ]);
-      this.loading = false;
       return;
     }
 
