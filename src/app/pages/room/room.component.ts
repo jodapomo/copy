@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RoomService } from './shared/services/room.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Room } from '../../models/room.model';
 import { switchMap, tap } from 'rxjs/operators';
 import { Item } from '../../models/item.model';
@@ -26,6 +26,7 @@ export class RoomComponent implements OnInit, OnDestroy  {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private titleService: Title,
     private roomService: RoomService,
     private authService: AuthService,
@@ -50,6 +51,9 @@ export class RoomComponent implements OnInit, OnDestroy  {
       this.items = room.items.slice().reverse();
       this.setAuthUserOnline();
       this.titleService.setTitle(`${ room.name } - Copy`);
+    }, error => {
+      this.authService.logout();
+      return this.router.navigate(['/'], { queryParams: { error } });
     });
 
   }

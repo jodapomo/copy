@@ -59,8 +59,8 @@ export class AuthGuard implements CanActivate {
 
                 }
 
-              }, _ => {
-                this.router.navigate(['/'], { queryParams: { error: 'Something bad happened; please try again later (server).' } });
+              }, error => {
+                this.router.navigate(['/'], { queryParams: { error }});
                 return false;
               });
           }),
