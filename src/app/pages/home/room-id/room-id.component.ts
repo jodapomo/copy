@@ -53,7 +53,7 @@ export class RoomIdComponent implements OnInit {
 
     this.loading = true;
 
-    if ( this.authService.sessionExist( roomId ) ) {
+    if ( this.authService.sessionExists( roomId ) ) {
       this.router.navigate([ '/room', roomId ]);
       return;
     }

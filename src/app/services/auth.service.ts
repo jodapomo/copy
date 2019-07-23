@@ -71,7 +71,7 @@ export class AuthService {
 
   }
 
-  sessionExist( roomId: number ): boolean {
+  sessionExists( roomId: number ): boolean {
     const sessions: Session[] = JSON.parse(localStorage.getItem('sessions'));
 
     if ( sessions ) {
@@ -118,8 +118,16 @@ export class AuthService {
 
   }
 
+  isSessionSet() {
+    return this.user && this.roomId && this.token;
+  }
+
   emitJoin( roomId: number, user: TempUser ) {
     this.ss.socket.emit('userJoin', { roomId, username: user.username });
+  }
+
+  emitJoinCurrentUser() {
+    this.ss.socket.emit('userJoin', { roomId: this.roomId, username: this.user.username });
   }
 
   emitLeave() {

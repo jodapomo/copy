@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RoomService } from './shared/services/room.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Room } from '../../models/room.model';
 import { switchMap, tap } from 'rxjs/operators';
 import { Item } from '../../models/item.model';
@@ -22,6 +22,7 @@ export class RoomComponent implements OnInit, OnDestroy  {
 
   private userJoinSubs: Subscription;
   private userLeaveSubs: Subscription;
+  private userReconnectSubs: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class RoomComponent implements OnInit, OnDestroy  {
     this.loadRoom();
     this.userJoinSubs = this.roomService.userJoin.subscribe( (user: TempUser) => this.onUserJoin(user) );
     this.userLeaveSubs = this.roomService.userLeave.subscribe( (user: TempUser) => this.onUserLeave(user) );
+    this.userReconnectSubs = this.roomService.userReconnect.subscribe( _ => this.onUserReconnect() );
   }
 
   loadRoom() {
@@ -82,10 +84,17 @@ export class RoomComponent implements OnInit, OnDestroy  {
 
   }
 
+  onUserReconnect() {
+    if ( this.room && this.authService.isSessionSet() ) {
+      this.authService.emitJoinCurrentUser();
+    }
+  }
+
   ngOnDestroy(): void {
     this.roomService.leave();
     this.userJoinSubs.unsubscribe();
     this.userLeaveSubs.unsubscribe();
+    this.userReconnectSubs.unsubscribe();
   }
 
 }

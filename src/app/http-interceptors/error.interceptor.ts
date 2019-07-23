@@ -23,7 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                         // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
                         this.authService.logout();
-                        this.router.navigate(['/']);
+                        this.router.navigate(['/'], { queryParams: { error: 'You are unauthorized. Please login again.' } });
                     }
 
                     let errorMessage = 'Error!';
